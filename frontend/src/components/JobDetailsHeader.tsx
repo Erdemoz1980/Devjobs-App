@@ -1,13 +1,11 @@
 import React from 'react';
 import { Job } from '../models/models';
 
-interface JobDetailsHeaderProps extends Pick<Job, 'company' | 'logo' | 'logoBackground' | 'website'> {
-  isDarkTheme:boolean
- };
+interface JobDetailsHeaderProps extends Pick<Job, 'company' | 'logo' | 'logoBackground' | 'website'> {};
 
-const JobDetailsHeader: React.FC<JobDetailsHeaderProps> = ({ company, logo, logoBackground, website, isDarkTheme }) => {
+const JobDetailsHeader: React.FC<JobDetailsHeaderProps> = ({ company, logo, logoBackground, website }) => {
   return (
-    <header className={`job-details-header ${isDarkTheme ? 'dark-theme' : ''}`}>
+    <header className='job-details-header'>
       <div className='info-container'>
         <section className='logo-container' style={{ background: `${logoBackground}` }}>
           <img src={logo} alt='logo' />

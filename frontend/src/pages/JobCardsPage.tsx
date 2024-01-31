@@ -2,16 +2,12 @@ import React from 'react';
 import JobCard from '../components/JobCard';
 import jobsData from '../data.json';
 
-interface JobCardsPageProps {
-  isDarkTheme:boolean
-}
-
-const JobCardsPage: React.FC<JobCardsPageProps> = ({ isDarkTheme }) => {
+const JobCardsPage: React.FC = () => {
   return (
     <section className='job-cards-page-wrapper'>
       {
         jobsData.map(job => (
-          <JobCard key={job.id} {...job} isDarkTheme={isDarkTheme} />
+          <JobCard key={job.id} {...job} />
         ))
       }
     </section>

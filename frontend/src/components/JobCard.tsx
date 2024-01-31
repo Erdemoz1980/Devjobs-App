@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useContext, useReducer} from 'react';
 import { Link } from 'react-router-dom';
 import { Job } from '../models/models';
+import { GlobalContext} from '../context/GlobalState';
 
 
-interface JobCardProps extends Job {
-  isDarkTheme:boolean
- };
+interface JobCardProps extends Job {};
 
-const JobCard: React.FC<JobCardProps> = ({ isDarkTheme, ...job }) => {
+const JobCard: React.FC<JobCardProps> = ({...job }) => {
   const {id, company, logoBackground, logo, postedAt, contract, position, location } = job;
-  
+   
+  const { isDarkTheme } = useContext(GlobalContext);
  
   return (
     <Link to={`/jobdetails/${id}`}>

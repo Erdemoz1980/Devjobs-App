@@ -1,13 +1,10 @@
 import React from 'react';
 import SwitchBox from './SwitchBox';
-import { Switcher } from '../models/models';
 
-interface NavbarProps extends Switcher {}
-
-const Navbar:React.FC<NavbarProps> = ({isDarkTheme ,setIsDarkTheme}) => {
+const Navbar:React.FC = () => {
   return (
     <nav className='navbar-wrapper'>
-      <SwitchBox setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme} />
+      <SwitchBox />
     </nav>
   )
 }

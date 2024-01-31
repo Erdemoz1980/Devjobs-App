@@ -309,7 +309,7 @@ transform: translateY(-40px);
 }
 
 /*Dark Theme*/
-.job-details-header.dark-theme{
+.main-wrapper.dark-theme .job-details-header{
   background: var(--clrVeryDarkBlue);
 }
 

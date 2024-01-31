@@ -29,8 +29,3 @@ export interface Search {
   location: string,
   isFullTime:boolean
 }
-
-export interface Switcher {
-  isDarkTheme: boolean,
-  setIsDarkTheme:React.Dispatch<React.SetStateAction<boolean>>
-}

@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import Navbar from './components/Navbar';
 import JobDetailsPage from './pages/JobDetailsPage';
+import { GlobalProvider, GlobalContext } from './context/GlobalState';
 
 
 const App: React.FC = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+  const { isDarkTheme } = useContext(GlobalContext);
 
   return (
+    <GlobalProvider>
     <BrowserRouter>
       <main className={`main-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
-      <Navbar isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
+      <Navbar />
         <Routes>
-          <Route path='/' element={<MainPage isDarkTheme={isDarkTheme} />} />
-          <Route path='/jobdetails/:id' element={<JobDetailsPage isDarkTheme={isDarkTheme} />} />
+          <Route path='/' element={<MainPage />} />
+          <Route path='/jobdetails/:id' element={<JobDetailsPage />} />
         </Routes>
       </main>
-    </BrowserRouter>
+      </BrowserRouter>
+      </GlobalProvider>
   )
 };
 

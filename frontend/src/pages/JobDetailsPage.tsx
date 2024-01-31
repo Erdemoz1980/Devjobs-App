@@ -5,12 +5,8 @@ import JobDetails from '../components/JobDetails';
 import JobDetailsFooter from '../components/JobDetailsFooter';
 import jobsData from '../data.json';
 
-interface JobDetailsPageProps {
-  isDarkTheme:boolean
-}
 
-
-const JobDetailsPage: React.FC<JobDetailsPageProps> = ({isDarkTheme}) => {
+const JobDetailsPage: React.FC = () => {
   const params = useParams();
 
   const job = jobsData.find(job => job.id === Number(params.id));
@@ -25,7 +21,7 @@ const JobDetailsPage: React.FC<JobDetailsPageProps> = ({isDarkTheme}) => {
   return (
     <>
     <div className='job-details-page-wrapper container-md'>
-      <JobDetailsHeader company={company} logo={logo} logoBackground={logoBackground} website={website} isDarkTheme={isDarkTheme} />
+      <JobDetailsHeader company={company} logo={logo} logoBackground={logoBackground} website={website} />
       <JobDetails
         postedAt={postedAt} contract={contract}
         position={position} location={location}
