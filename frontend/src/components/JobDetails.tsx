@@ -1,0 +1,53 @@
+import React from 'react';
+import { Job } from '../models/models';
+
+interface JobDetailsProps extends Pick<Job, 'postedAt'|'contract'|'position'|'location'|'description'|'requirements'|'role'> { };
+
+const JobDetails: React.FC<JobDetailsProps> = ({postedAt, contract, position, location, description, requirements, role}) => {
+  return (
+    <section className='job-details-wrapper'>
+
+      <header className="job-details-body-header mb-4">
+        <div>
+          <div className='job-meta'>
+            <p>{postedAt}</p><p className='job-meta-separator'></p><p>{contract}</p>
+          </div>
+          <div className='job-position-wrapper'>
+            <h1 className='size-h1'>{position}</h1>
+          </div>
+          <div className='location-wrapper'>
+            <h4 className='size-h4'>{location}</h4>
+          </div>
+        </div>
+        <button className="btn btn-large btn-dark-violet">Apply Now</button>
+      </header>
+
+      <section className="job-desc-wrapper mb-4">
+        <p>{description}</p>
+      </section>
+
+      <section className="job-requirements-wrapper mb-48">
+        <h3 className='mb-28'>Requirements</h3>
+        <p className='mb-24'>{requirements.content}</p>
+        <ul className='job-requirements-list'>
+          {requirements.items.map((item, index) => (
+            <li key={index}><span></span><div>{item}</div></li>
+         ))}
+        </ul>
+      </section>
+
+      <section className="job-tasks">
+        <h3 className='mb-28'>What You Will Do</h3>
+        <p className='mb-24'>{role.content}</p>
+        <ol className="job-tasks-list-ordered">
+          {role.items.map((item, index) =>(
+            <li key={index}>{item}</li>
+          ))}
+        </ol>
+      </section>
+  
+    </section>
+  )
+};
+
+export default JobDetails

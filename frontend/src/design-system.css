@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+
+:root {
+  /*Colors*/
+
+  /*Primary Colors*/
+  --clrViolet:#5964e0;
+  --clrLightViolet:#939bf4;
+  --clrVeryDarkBlue:#19202d;
+  --clrMidnight:#121721;
+
+  /*Secondary Colors*/
+  --clrVeryLightGrey:#f4f6f8;
+  --clrLightGrey:#E2E6EA;
+  --clrGrey:#9daec2;
+  --clrDarkGrey:#6e8098;
+  --clrVeryLightViolet:#eff0fc;
+  --clrMediumViolet:#c5c9f4;
+
+
+  
+  --clrVeryDarkGrey:#303642;
+  --clrMediumGrey:#696e76;
+
+
+  /*Typography*/
+  --ffMain:'Kumbh Sans', sans-serif;
+
+  /*Transitions*/
+  --trMain:0.1s ease-in-out;
+  --trTheme:0.25s ease-in-out;
+
+  /*Misc*/
+  --borderRadiusMain:5px;
+}
+
+a {
+  text-decoration: none;
+  color:var(--clrVeryDarkBlue);
+  display: block;
+}
+
+ul{
+  list-style: none;
+}
+
+/*Make images easier to work with*/
+img, svg{
+object-fit: contain;
+
+}
+
+/*Utilities*/
+.container-lg{
+  margin: auto;
+  max-width: 1110px;
+}
+.container-md{
+  margin: auto;
+  max-width: 730px;
+}
+
+.container.dark-theme{
+  background: var(--clrMidnight);
+}
+
+/*Margin Bottom Utilities*/
+.mb-4{
+  margin-bottom: 40px;
+}
+
+.mb-24{
+  margin-bottom: 24px;
+}
+
+.mb-28{
+  margin-bottom: 28px;
+}
+
+.mb-48 {
+  margin-bottom: 48px;
+}
+
+.mb-8{
+  margin-bottom: 80px;
+}
+
+/*Headings*/
+h1,h2,h3,h4 {
+  color:var(--clrVeryDarkBlue)
+}
+.size-h1{
+  font-size:28px;
+  line-height: 34px;
+}
+
+.size-h2{
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.size-h3{
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.size-h4{
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/*Buttons*/
+.btn{
+  border: none;
+  border-radius: var(--borderRadiusMain);
+  font-size: 16px;
+  font-weight: bold;
+  font-family: inherit;
+  transition: var(--trMain);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-large{
+  width: 147px;
+  height: 48px;
+}
+
+.btn-light-violet{
+  background: var(--clrVeryLightViolet);
+  color:var(--clrViolet)
+}
+
+.btn-dark-violet{
+background: var(--clrViolet);
+color:#fff;
+}
+
+.btn-1 {
+  background: var(--clrViolet);
+  color:#fff;
+  width: 123px;
+  height: 48px;
+}
+
+.btn-1:hover{
+  background:var(--clrLightViolet);
+}
+
+.btn-2{
+  background:var(--clrVeryLightViolet);
+  color:var(--clrViolet)
+}
+
+.btn-2:hover{
+  background: var(--clrMediumViolet);
+}
+
+.btn-2-dark {
+  background: var(--clrVeryDarkGrey);
+  color:#fff;
+}
+
+.btn-2-dark:hover{
+  background: var(--clrMediumGrey);
+}
