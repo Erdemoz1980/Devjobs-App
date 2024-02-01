@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Job } from '../models/models';
+import { GlobalContext } from '../context/GlobalState';
+
 
 interface JobDetailsProps extends Pick<Job, 'postedAt'|'contract'|'position'|'location'|'description'|'requirements'|'role'> { };
 
-const JobDetails: React.FC<JobDetailsProps> = ({postedAt, contract, position, location, description, requirements, role}) => {
+const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, location, description, requirements, role }) => {
+  
+  const { isDarkTheme } = useContext(GlobalContext);
   return (
-    <section className='job-details-wrapper'>
+    <section className={`job-details-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
 
       <header className="job-details-body-header mb-4">
         <div>

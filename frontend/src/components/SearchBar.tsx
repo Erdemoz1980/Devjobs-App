@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import IconSearch from './IconSearch';
 import IconLocation from './IconLocation';
 import { Search } from '../models/models';
 import IconCheck from './IconCheck';
+import { GlobalContext } from '../context/GlobalState';
 
 const SearchBar: React.FC = () => {
   const [formData, setFormData] = useState<Search>({
@@ -11,12 +12,14 @@ const SearchBar: React.FC = () => {
     isFullTime: false,
   })
 
-  const onChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const { isDarkTheme } = useContext(GlobalContext);
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prevState => {
       if (e.target.name === 'isFullTime') {
-        return {...prevState, isFullTime: !prevState.isFullTime }
+        return { ...prevState, isFullTime: !prevState.isFullTime }
       } else {
-        return  {
+        return {
           ...prevState,
           [e.target.name]: e.target.value
         }
@@ -24,14 +27,15 @@ const SearchBar: React.FC = () => {
     })
   }
   
-  const submitHandler = (e:React.ChangeEvent<HTMLFormElement>) => {
+  const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormData({keyword:'', location:'', isFullTime:false})
-}
+    setFormData({ keyword: '', location: '', isFullTime: false })
+  }
 
 
   return (
-    <form className='searchbar-wrapper' onSubmit={submitHandler}>
+    <form className={`searchbar-wrapper container-lg ${isDarkTheme ? 'dark-theme' : ''}`
+} onSubmit={submitHandler}>
         
       <label htmlFor='keyword' className="input-wrapper keyword-input">
           <IconSearch />
@@ -50,7 +54,7 @@ const SearchBar: React.FC = () => {
       </label>
     
       <div className="input-wrapper fulltime-input">
-        <input placeholder='This is checkbox' type="checkbox" name="isFullTime" id="isFullTime" checked={formData.isFullTime} onChange={onChangeHandler} />
+        <input type="checkbox" name="isFullTime" id="isFullTime" checked={formData.isFullTime} onChange={onChangeHandler} />
         <label htmlFor="isFullTime">
              <IconCheck />
         Full Time Only

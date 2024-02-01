@@ -52,6 +52,7 @@ object-fit: contain;
 
 /*Utilities*/
 .container-lg{
+  position: relative;
   margin: auto;
   max-width: 1110px;
 }
@@ -86,6 +87,9 @@ object-fit: contain;
 }
 
 /*Headings*/
+h1,h2,h3,h4 {
+  transition: all var(--trMain);
+}
 h1,h2,h3,h4 {
   color:var(--clrVeryDarkBlue)
 }

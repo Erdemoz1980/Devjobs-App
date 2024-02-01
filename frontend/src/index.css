@@ -15,26 +15,21 @@ body{
   color:var(--clrVeryDarkBlue);
 }
 
-.main-wrapper{
-  background: var(--clrLightGrey);
-  transition: background var(--trTheme);
-  padding-bottom: 20px;
-}
-
-/*Dark Theme Main Page & SearchBar*/
-.main-wrapper.dark-theme{
-  background: var(--clrMidnight)
-}
-
 /*Main Page*/
 .main-page-wrapper{
-transform: translateY(-40px);
+background-color: var(--clrLightGrey);
+transition: background var(--trTheme);
+}
+
+/*Main Page Dark Theme*/
+.main-page-wrapper.dark-theme {
+  background:var(--clrMidnight)
 }
 
 /*Navbar*/
 .navbar-wrapper{
-  position:relative;
-  max-width: 100%;
+  position: absolute;
+  width: 100%;
   height: 160px;
   background: var(--clrViolet);
   border-radius:  0 0 0 100px;
@@ -53,7 +48,7 @@ transform: translateY(-40px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  right:165px;
+  right:0;
   top:46px;
 }
 
@@ -98,20 +93,23 @@ transform: translateY(-40px);
  display: grid;
  grid-template-columns: 463px 300px 345px;
  align-items: center;
- margin-bottom: 105px;
  transition: background var(--trTheme);
+ transform: translateY(120px);
 }
 
 .searchbar-wrapper label{
+  /*color:var(--clrVeryDarkBlue);*/
   transition: color var(--trTheme);
 }
 
 /*Dark Theme SearchBar*/
-.main-wrapper.dark-theme .searchbar-wrapper{
+.searchbar-wrapper.dark-theme{
   background: var(--clrVeryDarkBlue);
-  color:#fff;
 }
 
+.searchbar-wrapper.dark-theme label{
+  color:#fff;
+}
 .searchbar-wrapper .input-wrapper{
   height: 100%;
   display: flex;
@@ -211,6 +209,7 @@ transform: translateY(-40px);
   grid-template-columns: repeat(3,1fr);
   column-gap: 30px;
   row-gap: 40px;
+  margin-top: 225px;
 }
 
 .job-card-wrapper{
@@ -278,15 +277,26 @@ transform: translateY(-40px);
   line-height: 0;
 }
 
-.location-wrapper {
+.location-wrapper h4 {
   color:var(--clrViolet);
   font-size: 14px;
   font-weight: bold;
 }
 
 /*Job Details Page*/
-.job-details-page-wrapper{
-  transform: translateY(-40px);
+.job-details-page-wrapper {
+  transition: background var(--trTheme);
+  border:1px solid red;
+  
+}
+
+/*Job Details Page Dark Theme*/
+.job-details-page-wrapper.dark-theme{
+  background: var(--clrMidnight);
+}
+
+.job-details-body-wrapper{
+  transform: translateY(120px);
 }
 
 .job-details-header,
@@ -305,16 +315,17 @@ transform: translateY(-40px);
   padding-right: 43px;
   margin-bottom: 32px;
   border-radius: 10px var(--borderRadiusMain) var(--borderRadiusMain) 10px;
-  transition: all var(--trTheme);
+  transition: background var(--trTheme);
 }
 
 /*Dark Theme*/
-.main-wrapper.dark-theme .job-details-header{
+.job-details-header.dark-theme{
   background: var(--clrVeryDarkBlue);
 }
 
-.job-details-header.dark-theme .company-name {
-  color:#fff;
+.job-details-header.dark-theme .company-name,
+.job-details-header.dark-theme .company-name h2 {
+ color:#fff; 
 }
 
 .job-details-header .logo-container{
@@ -336,7 +347,6 @@ height: 40px;
  flex-direction: column;
  gap:13px;
  transition: var(--trTheme);
- 
 }
 
 /*Job Details Body*/
@@ -345,6 +355,16 @@ height: 40px;
   background: #fff;
   padding: 48px 43px 48px 48px;
   border-radius: var(--borderRadiusMain);
+  transition:background var(--trTheme)
+}
+
+/*Job Details Body Dark Theme*/
+.job-details-wrapper.dark-theme{
+  background: var(--clrVeryDarkBlue);
+}
+
+.job-details-wrapper.dark-theme .job-position-wrapper h1{
+  color:#fff;
 }
 
 .job-details-body-header{

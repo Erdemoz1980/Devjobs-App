@@ -4,7 +4,7 @@ import jobsData from '../data.json';
 
 const JobCardsPage: React.FC = () => {
   return (
-    <section className='job-cards-page-wrapper'>
+    <section className='job-cards-page-wrapper container-lg'>
       {
         jobsData.map(job => (
           <JobCard key={job.id} {...job} />
