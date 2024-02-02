@@ -293,22 +293,19 @@ transition: background var(--trTheme);
   overflow: auto;
   background: var(--clrLightGrey);
   transition: background var(--trTheme); 
-  
-
 }
 
+.job-details-body-wrapper{
+  position: relative;
+  margin-top: 120px;
+  margin-bottom: 80px;
+  z-index: 10;
+ }
+ 
 /*Job Details Page Dark Theme*/
 .job-details-page-wrapper.dark-theme{
   background: var(--clrMidnight);
 }
-
-.job-details-body-wrapper{
- position: relative;
- margin-top: 120px;
- z-index: 10;
-}
-
-
 
 .job-details-header,
 .job-details-header .info-container{
@@ -328,6 +325,7 @@ transition: background var(--trTheme);
   border-radius: 10px var(--borderRadiusMain) var(--borderRadiusMain) 10px;
   transition: background var(--trTheme);
 }
+
 
 /*Dark Theme*/
 .job-details-header.dark-theme{
@@ -366,7 +364,7 @@ height: 40px;
   background: #fff;
   padding: 48px 43px 48px 48px;
   border-radius: var(--borderRadiusMain);
-  transition:background var(--trTheme)
+  transition:background var(--trTheme);
 }
 
 /*Job Details Body Dark Theme*/
@@ -377,6 +375,8 @@ height: 40px;
 .job-details-wrapper.dark-theme .job-position-wrapper h1{
   color:#fff;
 }
+
+.job-details-body-wrapper
 
 .job-details-body-header{
   display: flex;
@@ -444,8 +444,17 @@ margin-bottom:8px;
 .job-details-footer-wrapper{
   width: 100%;
   height: 96px;
-  background: #fff;
-  
+  background: #fff;  
+}
+
+/**Job Details Footer Dark Theme*/
+.job-details-footer-wrapper.dark-theme {
+  background: var(--clrVeryDarkBlue);
+  color:#fff;
+}
+
+.footer-position.dark-theme {
+  color:#fff;
 }
 
 .job-details-footer-body{
@@ -453,5 +462,9 @@ margin-bottom:8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
 }
+
+.footer-company{
+  color:var(--clrDarkGrey)
+}
+

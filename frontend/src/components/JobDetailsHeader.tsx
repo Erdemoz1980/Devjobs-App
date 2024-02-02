@@ -24,7 +24,7 @@ const JobDetailsHeader: React.FC<JobDetailsHeaderProps> = ({ company, logo, logo
      
    
       <div className="company-website-link">
-        <a href={website} target='_blank' rel="noreferrer" className='btn btn-large btn-light-violet'>Company Site</a>
+        <a href={website} target='_blank' rel="noreferrer" className={`btn btn-large ${isDarkTheme ? 'btn-dark' : 'btn-light-violet'}`}>Company Site</a>
       </div>
     </header>
   )

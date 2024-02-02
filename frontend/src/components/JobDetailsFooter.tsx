@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Job } from '../models/models';
+import { GlobalContext } from '../context/GlobalState';
 
 interface JobDetailsFooterProps extends Pick<Job, 'position' | 'company'>{}
 
-const JobDetailsFooter:React.FC<JobDetailsFooterProps> = ({position, company}) => {
+const JobDetailsFooter: React.FC<JobDetailsFooterProps> = ({ position, company }) => {
+  
+  const { isDarkTheme } = useContext(GlobalContext);
   return (
-    <footer className='job-details-footer-wrapper'>
+    <footer className={`job-details-footer-wrapper ${isDarkTheme ? 'dark-theme':''}`}>
       <section className="job-details-footer-body container-md">
       <div>
-        <h3>{position}</h3>
-        <p>{company}</p>
+        <h3 className={`footer-position ${isDarkTheme ? 'dark-theme' : ''}`}>{position}</h3>
+        <p className='footer-company'>{company}</p>
       </div>
         <button className="btn btn-large btn-dark-violet">Apply Now</button>
         </section>

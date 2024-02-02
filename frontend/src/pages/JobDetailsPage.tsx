@@ -29,7 +29,8 @@ const JobDetailsPage: React.FC = () => {
         postedAt={postedAt} contract={contract}
         position={position} location={location}
           description={description} requirements={requirements} role={role} />
-         </div>
+      </div>
+      <JobDetailsFooter position={position} company={company} />
       </section>
   )
 }
