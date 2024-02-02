@@ -15,14 +15,14 @@ const JobDetailsPage: React.FC = () => {
   const { isDarkTheme } = useContext(GlobalContext);
 
   if (!job) {
-    return <div className='job-details-body-wrapper container-md'>No job details were found!</div>
+    return <div className='main-page-wrapper container-md'>No job details were found!</div>
   }
 
   const { company, logo, logoBackground, position, postedAt, contract, location, website, description, requirements, role } = job; 
 
 
   return (
-    <div className={`job-details-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
+    <section className={`job-details-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
     <div className='job-details-body-wrapper container-md'>
       <JobDetailsHeader company={company} logo={logo} logoBackground={logoBackground} website={website} />
       <JobDetails
@@ -30,7 +30,7 @@ const JobDetailsPage: React.FC = () => {
         position={position} location={location}
           description={description} requirements={requirements} role={role} />
          </div>
-      </div>
+      </section>
   )
 }
 
