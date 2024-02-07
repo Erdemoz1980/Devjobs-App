@@ -5,6 +5,7 @@
 
   /*Primary Colors*/
   --clrViolet:#5964e0;
+  --clrMediumViolet:#6771e3;
   --clrLightViolet:#939bf4;
   --clrVeryDarkBlue:#19202d;
   --clrMidnight:#121721;
@@ -55,7 +56,9 @@ object-fit: contain;
   position: relative;
   margin: auto;
   max-width: 1110px;
+  box-sizing: border-box;
 }
+
 .container-md{
   margin: auto;
   max-width: 730px;
@@ -135,6 +138,10 @@ h1,h2,h3,h4 {
 .btn-light-violet{
   background: var(--clrVeryLightViolet);
   color:var(--clrViolet)
+}
+
+.btn-light-violet:hover{
+  background: var(--clrMediumViolet);
 }
 
 .btn-dark-violet{

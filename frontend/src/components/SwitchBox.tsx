@@ -7,15 +7,13 @@ const SwitchBox: React.FC = () => {
   const { isDarkTheme, setIsDarkTheme } = useContext(GlobalContext);
   
   return (
-    <section className="container-lg">
-      <div className='switchbox-wrapper'>
+      <section className='switchbox-wrapper'>
         <IconSun />
         <input type="checkbox" name="theme-switch" id="theme-switch" checked={isDarkTheme} onChange={setIsDarkTheme} />
         <label htmlFor="theme-switch">
         </label>
         <IconMoon />
-      </div>
-    </section>
+      </section>
   )
 };
 

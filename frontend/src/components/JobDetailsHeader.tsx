@@ -18,7 +18,7 @@ const JobDetailsHeader: React.FC<JobDetailsHeaderProps> = ({ company, logo, logo
         </section>
         <div className="company-name">
           <h2>{company}</h2>
-          <p className="company-website">{website}</p>
+          <a href={website} target='_blank' rel='noreferrer' className="company-website">{website}</a>
         </div>
       </div>
      

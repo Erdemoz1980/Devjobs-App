@@ -31,7 +31,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, l
       </section>
 
       <section className="job-requirements-wrapper mb-48">
-        <h3 className='mb-28'>Requirements</h3>
+        <h3 className='mb-28 size-h3'>Requirements</h3>
         <p className='mb-24'>{requirements.content}</p>
         <ul className='job-requirements-list'>
           {requirements.items.map((item, index) => (
@@ -41,7 +41,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, l
       </section>
 
       <section className="job-tasks">
-        <h3 className='mb-28'>What You Will Do</h3>
+        <h3 className='mb-28 size-h3'>What You Will Do</h3>
         <p className='mb-24'>{role.content}</p>
         <ol className="job-tasks-list-ordered">
           {role.items.map((item, index) =>(

@@ -35,7 +35,54 @@ padding-bottom: 104px;
   background: var(--clrViolet);
   border-radius:  0 0 0 100px;
   z-index: 10;
+  overflow: hidden;
 }
+
+.navbar-body{
+  height: 100%;
+  display: flex;
+  justify-content:space-between;
+  padding-top: 45px;
+}
+
+.navbar-body .navbar-title{
+  color:#fff;
+  cursor: pointer;
+}
+
+.navbar-body .navbar-title:hover {
+  color:var(--clrLightGrey);
+}
+
+/*Triangle Patterns in Navbar*/
+.triangle{
+position: absolute;
+width: 515px;
+height: 0;
+border-right:258px solid transparent;
+border-left:258px solid transparent;
+border-bottom: 515px solid #6c76df;
+}
+
+.triangle:nth-child(1) {
+  transform: rotate(-40deg);
+  left:-200px;
+  top:-80px;
+}
+
+.triangle:nth-child(2){
+  left:450px;
+  top:-300px;
+  border-bottom-right-radius: 30%;
+  border-bottom-left-radius: 30%;
+  transform: rotate(90deg);
+}
+
+.triangle:nth-child(3){
+  display: none;
+  right:00px;
+}
+
 
 /*Dark Theme*/
 .navbar-wrapper.dark-theme  .input-wrapper:not(:last-child) {
@@ -44,14 +91,11 @@ padding-bottom: 104px;
 
 /*Switch Box styling*/
 .switchbox-wrapper{
-  position: absolute;
   width: 112px;
   height: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  right:0;
-  top:46px;
 }
 
 .switchbox-wrapper input[type="checkbox"]{
@@ -341,7 +385,6 @@ margin: 56px auto 0px auto;
   transition: background var(--trTheme);
 }
 
-
 /*Dark Theme*/
 .job-details-header.dark-theme{
   background: var(--clrVeryDarkBlue);
@@ -373,6 +416,8 @@ height: 40px;
  transition: var(--trTheme);
 }
 
+.job-details-header 
+
 /*Job Details Body*/
 .job-details-wrapper{
   max-width:730px;
@@ -388,11 +433,7 @@ height: 40px;
 }
 
 .job-details-wrapper.dark-theme  h1,
-.job-deteails-wrapper.dark-theme h3 {
-  color:#fff;
-}
-
-.job-details-wrapper h3{
+.job-details-wrapper.dark-theme h3 {
   color:#fff;
 }
 

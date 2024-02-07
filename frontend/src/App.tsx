@@ -10,8 +10,9 @@ const App: React.FC = () => {
 
   return (
     <GlobalProvider>
-      <Navbar />
+    
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/jobdetails/:id' element={<JobDetailsPage />} />
