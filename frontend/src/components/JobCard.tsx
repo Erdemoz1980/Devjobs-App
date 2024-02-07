@@ -1,4 +1,4 @@
-import React, {useContext, useReducer} from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Job } from '../models/models';
 import { GlobalContext} from '../context/GlobalState';
@@ -12,9 +12,8 @@ const JobCard: React.FC<JobCardProps> = ({...job }) => {
   const { isDarkTheme } = useContext(GlobalContext);
  
   return (
-    <Link to={`/jobdetails/${id}`}>
-    <section className={`job-card-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
 
+    <section className={`job-card-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
       <header className="logo-wrapper" style={{ background: `${logoBackground}` }}>
         <img src={logo} alt="Company Logo" />
       </header>
@@ -23,11 +22,13 @@ const JobCard: React.FC<JobCardProps> = ({...job }) => {
         <section className='job-meta'>
           <p>{postedAt}</p><p className='job-meta-separator'></p><p>{contract}</p>
         </section>
-
+        
+        <Link to={`/jobdetails/${id}`}>
         <section className='job-position-wrapper'>
           <h3>{position}</h3>
-        </section>
-
+          </section>
+          </Link>
+  
         <section className='company-wrapper'>
           <p>{company}</p>
         </section>
@@ -37,9 +38,8 @@ const JobCard: React.FC<JobCardProps> = ({...job }) => {
         </section>
       </div>
 
-      </section>
-      </Link>
-  )
+    </section>
+  ) 
 };
 
 export default JobCard

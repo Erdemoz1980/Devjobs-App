@@ -19,6 +19,7 @@ body{
 .main-page-wrapper{
 background-color: var(--clrLightGrey);
 transition: background var(--trTheme);
+padding-bottom: 104px;
 }
 
 /*Main Page Dark Theme*/
@@ -77,6 +78,10 @@ transition: background var(--trTheme);
  transform: translateY(-50%);
  left: 5px;
  transition: all 0.15s ease-in-out
+}
+
+.switchbox-wrapper label:hover::after{
+  background: var(--clrLightViolet);
 }
 
 /*Move the pseudo element when the checkbox is checked*/
@@ -217,18 +222,28 @@ transition: background var(--trTheme);
   margin-top: 225px;
 }
 
+/*Load More Button*/
+.load-more{
+display: block;
+margin: 56px auto 0px auto;
+}
+
 .job-card-wrapper{
   position: relative;
   background: #fff;
   width: 350px;
   height: 228px;
   border-radius: 10px;
-  cursor: pointer;
   transition: background var(--trTheme);
 }
 
 .job-position-wrapper h3{
   transition:color var(--trTheme)
+}
+
+.job-position-wrapper h3:hover{
+  color:var(--clrDarkGrey);
+  transition: var(--trMain);
 }
 
 /*Dark Theme*/
@@ -372,7 +387,12 @@ height: 40px;
   background: var(--clrVeryDarkBlue);
 }
 
-.job-details-wrapper.dark-theme .job-position-wrapper h1{
+.job-details-wrapper.dark-theme  h1,
+.job-deteails-wrapper.dark-theme h3 {
+  color:#fff;
+}
+
+.job-details-wrapper h3{
   color:#fff;
 }
 
