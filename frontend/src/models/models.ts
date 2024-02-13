@@ -8,8 +8,8 @@ interface Role {
   items:string[],
 }
 
-export interface Job {
-  id: number,
+interface Job {
+  id: string,
   company: string,
   logo: string,
   logoBackground: string,
@@ -24,8 +24,10 @@ export interface Job {
   role:Role
 }
 
-export interface Search {
+ interface Search {
   keyword: string,
   location: string,
   isFullTime:boolean
 }
+
+export type { Job, Search };

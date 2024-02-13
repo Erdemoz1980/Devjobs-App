@@ -1,24 +1,28 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_JOB_DETAIL } from '../queries/jobQueries';
 import JobDetailsHeader from '../components/JobDetailsHeader';
 import JobDetails from '../components/JobDetails';
 import JobDetailsFooter from '../components/JobDetailsFooter';
-import jobsData from '../data.json';
 import { GlobalContext } from '../context/GlobalState';
+import Loader from '../components/Loader';
 
 
 const JobDetailsPage: React.FC = () => {
   const params = useParams();
-
-  const job = jobsData.find(job => job.id === Number(params.id));
-
   const { isDarkTheme } = useContext(GlobalContext);
 
-  if (!job) {
-    return <div className='main-page-wrapper container-md'>No job details were found!</div>
-  }
+  const { loading, error, data } = useQuery(GET_JOB_DETAIL, {
+    variables:{id:params.id}
+  });
+  
+  if (loading) return <Loader />
+  if(error) return <div className='main-page-wrapper container-md'>No job details were found!</div>
 
-  const { company, logo, logoBackground, position, postedAt, contract, location, website, description, requirements, role } = job; 
+  const { company, logo, logoBackground, position, postedAt, contract, location, website, description, requirements, role } = data.job; 
+
+
 
 
   return (

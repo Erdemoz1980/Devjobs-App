@@ -10,7 +10,6 @@ const MainPage: React.FC = () => {
     <main className={`main-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
       <SearchBar />
       <JobCardsPage />
-      <button className="btn btn-large btn-dark-violet load-more">Load More</button>
     </main>
   )
 }
