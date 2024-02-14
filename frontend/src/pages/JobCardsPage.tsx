@@ -8,11 +8,9 @@ import { Job } from '../models/models';
 const JobCardsPage: React.FC = () => {
   const { loading, error, data  } = useQuery<{ jobs: Job[] }>(GET_JOBS);
 
-  console.log('Loading:', loading);
-  console.log('Error:', error);
-  console.log('Data:', data);
-
-  if (loading) return <Loader />;
+  if (loading) return <div className="job-cards-page-wrapper container-lg">
+    <Loader />
+  </div>;
   if (error || !data) return (
     <div className="job-cards-page-wrapper container-lg">
       <p>There are currently no jobs available.</p>

@@ -29,10 +29,27 @@ query getJobDetail ($id:ID!){
     location
     website
     description
-    requirements
     role
   }
 }
-`
+`;
 
-export { GET_JOBS, GET_JOB_DETAIL };
+const SEARCH_JOBS = gql`
+query searchJobs($searchTerm: String!){
+  searchJobs(searchTerm:$searchTerm){
+    id
+    company
+    logo
+    logoBackground
+    position
+    postedAt
+    contract
+    location
+    website
+    apply
+
+  }
+}
+`;
+
+export { GET_JOBS, GET_JOB_DETAIL, SEARCH_JOBS };

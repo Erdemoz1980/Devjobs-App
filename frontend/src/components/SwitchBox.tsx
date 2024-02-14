@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import IconMoon from './IconMoon';
 import IconSun from './IconSun';
 import { GlobalContext } from '../context/GlobalState';

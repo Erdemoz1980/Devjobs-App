@@ -28,17 +28,17 @@ const client = new ApolloClient({
 const App: React.FC = () => {
 
   return (
-    <ApolloProvider client={client}>
     <GlobalProvider>
-      <BrowserRouter>
-      <Navbar />
-        <Routes>
-          <Route path='/' element={<MainPage />} />
-          <Route path='/jobdetails/:id' element={<JobDetailsPage />} />
-        </Routes>
-      </BrowserRouter>
-      </GlobalProvider>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<MainPage />} />
+            <Route path='/jobdetails/:id' element={<JobDetailsPage />} />
+          </Routes>
+        </BrowserRouter>
       </ApolloProvider>
+    </GlobalProvider>
   )
 };
 

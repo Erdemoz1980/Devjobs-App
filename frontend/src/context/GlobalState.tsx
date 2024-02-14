@@ -1,13 +1,16 @@
 import  React, { createContext, useReducer } from 'react';
 import { AppReducer } from './AppReducer';
 import { GlobalState } from '../models/GlobalState';
+import { Job } from '../models/models';
 
 
 //Initial State
-const initialState:GlobalState = {
-  isDarkTheme:false,
-  setIsDarkTheme:()=>{}
-}
+const initialState: GlobalState = {
+  isDarkTheme: false,
+  setIsDarkTheme: () => {},
+  searchResults: [],
+  setSearchResults: () => []
+};
 
 //Create context
 export const GlobalContext = createContext<GlobalState>(initialState);
@@ -27,10 +30,19 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     })
   };
 
+  const setSearchResults = (results:Job[]) => {
+    dispatch({
+      type: 'SET_SEARCH_RESULTS',
+      payload:results
+    })
+  }
+
   return (
     <GlobalContext.Provider value={{
       isDarkTheme: state.isDarkTheme,
-      setIsDarkTheme
+      setIsDarkTheme,
+      searchResults: state.searchResults,
+      setSearchResults
     }}>
       {children}
     </GlobalContext.Provider>

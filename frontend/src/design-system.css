@@ -191,11 +191,11 @@ transition: all var(--trMain);
 /*Spinner*/
 .loader{
   border:16px solid #dfdfdf;
-  border-top:16px solid #19202d;
+  border-top:16px solid var(--clrViolet);
   border-radius: 50%;
   width: 120px;
   height: 120px;
-  animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {

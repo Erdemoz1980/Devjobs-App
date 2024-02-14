@@ -18,9 +18,9 @@ body{
 /*Main Page*/
 .main-page-wrapper{
 background-color: var(--clrLightGrey);
-height: auto;
+min-height: 100vh;
 transition: background var(--trTheme);
-padding-bottom: 104px;
+padding-bottom: 208px;
 }
 
 /*Main Page Dark Theme*/
@@ -269,8 +269,11 @@ border-bottom: 515px solid #6c76df;
 
 /*Load More Button*/
 .load-more{
-display: block;
-margin: 56px auto 0px auto;
+display:block;
+position: absolute;
+bottom:-104px;
+left:50%;
+transform:translateX(-50%);
 }
 
 .job-card-wrapper{

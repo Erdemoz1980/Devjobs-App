@@ -54,6 +54,19 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         return Job.findById(args.id)
       }
+    },
+    searchJobs: {
+      type: new GraphQLList(JobType),
+      args: { searchTerm: { type: GraphQLString } },
+      resolve(parent, args) {
+        const regexPattern = new RegExp(args.searchTerm, 'i');
+        const fieldsToSearch = Object.keys(Job.schema.paths);
+        const searchConditions = fieldsToSearch.map(field => ({
+          [field]: { $regex: regexPattern }
+        }));
+        return Job.find({$or:searchConditions});
+
+      }
     }
   }
 });
