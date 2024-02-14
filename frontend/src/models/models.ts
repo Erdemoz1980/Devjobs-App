@@ -25,9 +25,9 @@ interface Job {
 }
 
  interface Search {
-  keyword: string,
-  location: string,
-  isFullTime:boolean
+   keyword: string,
+   location: string,
+   isFullTime: boolean,
 }
 
 export type { Job, Search };

@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { useQuery } from '@apollo/client';
 import { SEARCH_JOBS } from '../queries/jobQueries';
+import { Search } from '../models/models';
 import IconSearch from './IconSearch';
 import IconLocation from './IconLocation';
-import { Search } from '../models/models';
 import IconCheck from './IconCheck';
 
 
@@ -14,13 +14,21 @@ const SearchBar: React.FC = () => {
     location: '',
     isFullTime: false,
   });
-  const { keyword, location, isFullTime } = formData;
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const { keyword } = formData;
 
   const { isDarkTheme, setSearchResults } = useContext(GlobalContext);
 
-  const { loading, error, data } = useQuery(SEARCH_JOBS, {
-    variables: { searchTerm: keyword }
+  const { loading, error, data, refetch } = useQuery(SEARCH_JOBS, {
+    variables: { searchTerm: keyword },
+    skip:!isSubmitted,
   });
+
+  useEffect(() => {
+    if (data) {
+      console.log(data.searchJobs)
+    }
+  }, [data, isSubmitted]);
 
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,10 +46,25 @@ const SearchBar: React.FC = () => {
   
   const submitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    setFormData({ keyword: '', location: '', isFullTime: false })
-  }
-
+  
+    try {
+      await refetch({ searchTerm: keyword });
+  
+      // Additional logic if needed...
+  
+      setIsSubmitted(true);
+    } catch (error) {
+      // Handle errors if needed
+    } finally {
+      // Reset isSubmitted after the asynchronous operation is complete
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ keyword: '', location: '', isFullTime: false });
+      }, 500);
+    }
+  };
+  
+  
   return (
     <form className={`searchbar-wrapper container-lg ${isDarkTheme ? 'dark-theme' : ''}`
     } onSubmit={submitHandler}>

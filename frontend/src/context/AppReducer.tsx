@@ -5,7 +5,7 @@ type Action =
   | { type: 'TOGGLE_THEME' }
   | { type: 'SET_SEARCH_RESULTS'; payload: Job[] };
 
-export const AppReducer = (state: GlobalState, action: Action): GlobalState => {
+export const AppReducer = (state: GlobalState, action: Action):GlobalState => {
   switch (action.type) {
     case 'TOGGLE_THEME':
       return {

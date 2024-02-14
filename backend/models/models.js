@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
-const requirementSchema = mongoose.Schema({
-  content: { type: String, required: true },
-  items:{type:[String], required:true}
-})
-
-const roleSchema = mongoose.Schema({
+const commonSchema = mongoose.Schema({
   content: { type: String, required: true },
   items:{type:[String], required:true}
 })
@@ -22,8 +17,8 @@ const jobSchema = mongoose.Schema({
   website: { type: String, required: true },
   apply: { type: String, required: true },
   description: { type: String, required: true },
-  requirements: requirementSchema,
-  role: roleSchema
+  requirements: commonSchema,
+  role: commonSchema
 })
 
 const Job = mongoose.model('Job', jobSchema);

@@ -59,13 +59,18 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(JobType),
       args: { searchTerm: { type: GraphQLString } },
       resolve(parent, args) {
-        const regexPattern = new RegExp(args.searchTerm, 'i');
-        const fieldsToSearch = Object.keys(Job.schema.paths);
-        const searchConditions = fieldsToSearch.map(field => ({
-          [field]: { $regex: regexPattern }
-        }));
-        return Job.find({$or:searchConditions});
+        const queryRegex = new RegExp(args.searchTerm, 'i');
+        const fieldsToSearch = Object.keys(Job.schema.paths).filter(field =>
+          
+          field !== '_id' && field !== '__v');
+        
+          const searchTerms = fieldsToSearch.map((field) => {
+            //how to account for nested fields here to dynamically generate a search query that conforms to mongoose.find() method?
+            
+          });
 
+        console.log(searchTerms)
+        return Job.find({ $or: searchTerms });
       }
     }
   }

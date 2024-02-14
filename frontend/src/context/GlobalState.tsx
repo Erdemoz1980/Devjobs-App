@@ -5,7 +5,7 @@ import { Job } from '../models/models';
 
 
 //Initial State
-const initialState: GlobalState = {
+const initialState:GlobalState = {
   isDarkTheme: false,
   setIsDarkTheme: () => {},
   searchResults: [],
@@ -30,10 +30,10 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     })
   };
 
-  const setSearchResults = (results:Job[]) => {
+  const setSearchResults = (results: Job[]) => {
     dispatch({
       type: 'SET_SEARCH_RESULTS',
-      payload:results
+      payload: results
     })
   }
 
@@ -47,4 +47,4 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
       {children}
     </GlobalContext.Provider>
   );
-}
+};
