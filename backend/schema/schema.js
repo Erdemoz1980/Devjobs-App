@@ -59,18 +59,26 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(JobType),
       args: { searchTerm: { type: GraphQLString } },
       resolve(parent, args) {
+        if (args.searchTerm === '' || args.searchTerm.trim() === '') {
+          return []
+        };
         const queryRegex = new RegExp(args.searchTerm, 'i');
-        const fieldsToSearch = Object.keys(Job.schema.paths).filter(field =>
-          
-          field !== '_id' && field !== '__v');
-        
-          const searchTerms = fieldsToSearch.map((field) => {
-            //how to account for nested fields here to dynamically generate a search query that conforms to mongoose.find() method?
-            
-          });
 
-        console.log(searchTerms)
-        return Job.find({ $or: searchTerms });
+        const searchFields = Object.keys(Job.schema.paths).filter(field => field !== '_id' && field !== '__v');
+
+        const searchTerms = searchFields.map(field => {
+          if (field === 'requirements' || field === 'role') {
+            return [
+              { [`${field}.content`]: { $regex: queryRegex } },
+              { [`${field}.items`]: { $regex: queryRegex } }
+            ]
+          }
+          return { [field]: { $regex: queryRegex } }
+        })
+        
+        const flattenedSearchTerms = [].concat(...searchTerms)
+
+        return Job.find({ $or: flattenedSearchTerms })
       }
     }
   }
