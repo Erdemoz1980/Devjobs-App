@@ -22,7 +22,7 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (location.state?.resetSearch) {
-      refetch({searchTerm:''});
+      refetch();
     }
   }, [location.state?.resetSearch, refetch]);
 
