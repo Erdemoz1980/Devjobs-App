@@ -8,6 +8,7 @@ interface JobDetailsProps extends Pick<Job, 'postedAt'|'contract'|'position'|'lo
 const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, location, description, requirements, role }) => {
   
   const { isDarkTheme } = useContext(GlobalContext);
+  
   return (
     <section className={`job-details-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
 

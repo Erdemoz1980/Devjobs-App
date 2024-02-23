@@ -30,4 +30,20 @@ interface Job {
    isFullTime: boolean,
 }
 
-export type { Job, Search };
+interface Search {
+    keyword: string,
+    location: string,
+    isFullTime:boolean
+}
+
+interface GraphQLError {
+ message:string
+};
+
+interface ApolloQuery<T> {
+  loading: boolean;
+  error: GraphQLError | undefined,
+  data: T;
+}
+
+export type { Job, Search, ApolloQuery, GraphQLError };

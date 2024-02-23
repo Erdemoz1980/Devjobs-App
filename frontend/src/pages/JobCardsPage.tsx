@@ -1,25 +1,21 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_JOBS } from '../queries/jobQueries';
 import JobCard from '../components/JobCard';
 import Loader from '../components/Loader';
-import { Job } from '../models/models';
+import { Job, ApolloQuery } from '../models/models';
 
-const JobCardsPage: React.FC = () => {
-  const { loading, error, data  } = useQuery<{ jobs: Job[] }>(GET_JOBS);
+interface JobsCardsPageProps<T> extends ApolloQuery<T> {}
 
+const JobCardsPage: React.FC<JobsCardsPageProps<{jobs:Job[]}>> = ({ loading, error, data }) => {
+  
   if (loading) return <div className="job-cards-page-wrapper container-lg">
     <Loader />
   </div>;
-  if (error || !data) return (
-    <div className="job-cards-page-wrapper container-lg">
-      <p>There are currently no jobs available.</p>
-    </div>
-    );
 
   return (
     <section className='job-cards-page-wrapper container-lg'>
-      {data.jobs.map((job: Job) => (
+      {data.jobs.length === 0 ? (
+      <p>No results found!</p>
+      ) : data.jobs.map((job: Job) => (
         <JobCard key={job.id} {...job} />
       ))}
       <button className="btn btn-large btn-dark-violet load-more">Load More</button>

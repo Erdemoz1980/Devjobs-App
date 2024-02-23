@@ -5,7 +5,6 @@ const commonSchema = mongoose.Schema({
   items:{type:[String], required:true}
 })
 
-
 const jobSchema = mongoose.Schema({
   company: { type: String, required: true },
   logo: { type: String, required: true },

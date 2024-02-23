@@ -24,7 +24,7 @@ const JobType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     company: { type: GraphQLString },
-    logo:{type:GraphQLString},
+    logo: { type: GraphQLString },
     logoBackground: { type: GraphQLString },
     position: { type: GraphQLString },
     postedAt: { type: GraphQLString },
@@ -36,18 +36,12 @@ const JobType = new GraphQLObjectType({
     requirements: { type: CommonType },
     role: { type: CommonType }
   })
-})
+});
 
 //Queries
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: {
-    jobs: {
-      type: new GraphQLList(JobType),
-      resolve(parent, args) {
-        return Job.find();
-      }
-    },
     job: {
       type: JobType,
       args: { id: { type: GraphQLID } },
@@ -55,30 +49,31 @@ const RootQuery = new GraphQLObjectType({
         return Job.findById(args.id)
       }
     },
-    searchJobs: {
+    jobs: {
       type: new GraphQLList(JobType),
       args: { searchTerm: { type: GraphQLString } },
       resolve(parent, args) {
-        if (args.searchTerm === '' || args.searchTerm.trim() === '') {
-          return []
+        if (!args.searchTerm || args.searchTerm.trim() === '') {
+          return Job.find()
         };
         const queryRegex = new RegExp(args.searchTerm, 'i');
-
-        const searchFields = Object.keys(Job.schema.paths).filter(field => field !== '_id' && field !== '__v');
-
+        const searchFields = Object.keys(Job.schema.paths).filter(field=>field!=='_id' && field!=='__v')
+        
         const searchTerms = searchFields.map(field => {
           if (field === 'requirements' || field === 'role') {
             return [
-              { [`${field}.content`]: { $regex: queryRegex } },
-              { [`${field}.items`]: { $regex: queryRegex } }
+              { [`${field}.content`]: { $regex: queryRegex }  },
+              { [`${field}.items`]:  {$regex: queryRegex } }
             ]
-          }
-          return { [field]: { $regex: queryRegex } }
-        })
-        
-        const flattenedSearchTerms = [].concat(...searchTerms)
+          };
 
-        return Job.find({ $or: flattenedSearchTerms })
+          return { [field]: { $regex: queryRegex } }
+
+        });
+
+        const flattenedSearchTerms = [].concat(...searchTerms)
+        return Job.find({ $or: flattenedSearchTerms });
+      
       }
     }
   }
