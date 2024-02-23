@@ -3,9 +3,9 @@ import JobCard from '../components/JobCard';
 import Loader from '../components/Loader';
 import { Job, ApolloQuery } from '../models/models';
 
-interface JobsCardsPageProps<T> extends ApolloQuery<T> {}
+interface JobsCardPageProps<T> extends ApolloQuery<T>{}
 
-const JobCardsPage: React.FC<JobsCardsPageProps<{jobs:Job[]}>> = ({ loading, error, data }) => {
+const JobCardsPage: React.FC<JobsCardPageProps<{jobs:Job[]}>> = ({ loading, error, data }) => {
   
   if (loading) return <div className="job-cards-page-wrapper container-lg">
     <Loader />

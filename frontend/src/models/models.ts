@@ -38,12 +38,14 @@ interface Search {
 
 interface GraphQLError {
  message:string
-};
-
-interface ApolloQuery<T> {
-  loading: boolean;
-  error: GraphQLError | undefined,
-  data: T;
 }
 
-export type { Job, Search, ApolloQuery, GraphQLError };
+interface ApolloQuery<T>{
+  loading: boolean,
+  error: GraphQLError | undefined,
+  data:T  
+}
+
+
+
+export type { Job, Search, GraphQLError, ApolloQuery };

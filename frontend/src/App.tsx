@@ -34,6 +34,7 @@ const App: React.FC = () => {
           <Navbar />
           <Routes>
             <Route path='/' element={<MainPage />} />
+            <Route path='/search' element={<MainPage />} />
             <Route path='/jobdetails/:id' element={<JobDetailsPage />} />
           </Routes>
         </BrowserRouter>
