@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
       <div className="triangle"></div>
       <div className="triangle"></div>
       <div className="navbar-body container-lg">
-        <Link to='/'>
+        <Link to='/' state={{resetSearch:true}}>
           <h1 className='navbar-title size-h1'>Home</h1>
         </Link>
         <SwitchBox />
