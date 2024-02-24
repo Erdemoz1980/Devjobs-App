@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState} from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { SEARCH_JOBS } from '../queries/jobQueries';
 import { Search } from '../models/models';
@@ -19,12 +19,16 @@ const MainPage: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const { searchTerm } = useParams();
 
   useEffect(() => {
     if (location.state?.resetSearch) {
       refetch({ searchTerm:'' });
+    };
+    if (searchTerm) {
+      refetch({ searchTerm });
     }
-  }, [location.state?.resetSearch, refetch]);
+  }, [location.state?.resetSearch, refetch, searchTerm]);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prevState => {
@@ -42,11 +46,11 @@ const MainPage: React.FC = () => {
 
   const submitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    try {
-      await refetch({ searchTerm: keyword });
-      navigate('/search');
+    navigate(`/jobs/search/${keyword}`);
 
+    try {
+      await refetch({ searchTerm });
+      
     } catch (error) {
      console.log(error)
     } finally {
