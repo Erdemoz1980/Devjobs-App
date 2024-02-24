@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef} from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { SEARCH_JOBS } from '../queries/jobQueries';
@@ -22,7 +22,7 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (location.state?.resetSearch) {
-      refetch();
+      refetch({ searchTerm:'' });
     }
   }, [location.state?.resetSearch, refetch]);
 
