@@ -51,7 +51,11 @@ const RootQuery = new GraphQLObjectType({
     },
     jobs: {
       type: new GraphQLList(JobType),
-      args: { searchTerm: { type: GraphQLString } },
+      args: {
+        searchTerm: { type: GraphQLString },
+        location: { type: GraphQLString },
+        contract: { type: GraphQLString }
+      },
       resolve(parent, args) {
         if (!args.searchTerm || args.searchTerm.trim() === '') {
           return Job.find()

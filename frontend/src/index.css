@@ -21,6 +21,7 @@ background-color: var(--clrLightGrey);
 min-height: 100vh;
 transition: background var(--trTheme);
 padding-bottom: 208px;
+position: relative;
 }
 
 /*Main Page Dark Theme*/
@@ -256,6 +257,12 @@ border-bottom: 515px solid #6c76df;
 
 .fulltime-input button{
   margin-right: 16px;
+}
+
+.clear-button{
+  position: absolute;
+  top:-87px;
+  left:0;
 }
 
 /*Job Cards Section*/

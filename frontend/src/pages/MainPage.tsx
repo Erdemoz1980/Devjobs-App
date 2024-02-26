@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState} from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import React, { useContext, useState} from 'react';
 import { useQuery } from '@apollo/client';
 import { SEARCH_JOBS } from '../queries/jobQueries';
 import { Search } from '../models/models';
@@ -13,23 +12,12 @@ const MainPage: React.FC = () => {
     location: '',
     isFullTime: false,
   });
+  const [isSeachSubmitted, setIsSearchSubmitted] = useState<boolean>(false);
   const { keyword } = formData;
   const { isDarkTheme } = useContext(GlobalContext);
   const { loading, error, data, refetch } = useQuery(SEARCH_JOBS);
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { searchTerm } = useParams();
-
-  useEffect(() => {
-    if (location.state?.resetSearch) {
-      refetch({ searchTerm:'' });
-    };
-    if (searchTerm) {
-      refetch({ searchTerm });
-    }
-  }, [location.state?.resetSearch, refetch, searchTerm]);
-
+  
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prevState => {
       if (e.target.name === 'isFullTime') {
@@ -46,25 +34,31 @@ const MainPage: React.FC = () => {
 
   const submitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/jobs/search/${keyword}`);
 
     try {
-      await refetch({ searchTerm });
+      await refetch({ searchTerm:keyword });
       
     } catch (error) {
      console.log(error)
     } finally {
+      setIsSearchSubmitted(true);
       setTimeout(() => {
         setFormData({ keyword: '', location: '', isFullTime: false });
       }, 500);
     }
   };
 
+  const clearSearchHandler = async () => {
+    await refetch({ searchTerm: keyword })
+    setIsSearchSubmitted(false)
+  }
+
   
   return (
     <main className={`main-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
-      <SearchBar formData={formData} setFormData={setFormData} submitHandler={submitHandler} onChangeHandler={onChangeHandler}   />
-      <JobCardsPage loading={loading} error={error} data={data}   />
+    
+      <SearchBar formData={formData} setFormData={setFormData} submitHandler={submitHandler} onChangeHandler={onChangeHandler} />
+      <JobCardsPage loading={loading} error={error} data={data}  clearSearchHandler={clearSearchHandler} isSearchSubmitted={isSeachSubmitted} />
     </main>
   )
 }
