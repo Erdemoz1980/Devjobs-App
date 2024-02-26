@@ -25,8 +25,8 @@ query getJobDetails ($id:ID!){
 `;
 
 const SEARCH_JOBS = gql`
-query searchJobs($searchTerm: String){
-  jobs(searchTerm:$searchTerm){
+query searchJobs($searchTerm: String, $location:String){
+  jobs(searchTerm:$searchTerm, location:$location){
     id
     company
     logo

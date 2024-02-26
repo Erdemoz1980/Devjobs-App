@@ -13,7 +13,7 @@ const MainPage: React.FC = () => {
     isFullTime: false,
   });
   const [isSeachSubmitted, setIsSearchSubmitted] = useState<boolean>(false);
-  const { keyword } = formData;
+  const { keyword, location, isFullTime } = formData;
   const { isDarkTheme } = useContext(GlobalContext);
   const { loading, error, data, refetch } = useQuery(SEARCH_JOBS);
 
@@ -36,10 +36,14 @@ const MainPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      await refetch({ searchTerm:keyword });
+      await refetch({
+        searchTerm: keyword,
+        location,
+        contract:isFullTime ? 'full time' : ''
+      });
       
+      console.log(location)
     } catch (error) {
-     console.log(error)
     } finally {
       setIsSearchSubmitted(true);
       setTimeout(() => {
@@ -49,7 +53,7 @@ const MainPage: React.FC = () => {
   };
 
   const clearSearchHandler = async () => {
-    await refetch({ searchTerm: keyword })
+    await refetch({ searchTerm: '', location:'', isFullTime:false })
     setIsSearchSubmitted(false)
   }
 

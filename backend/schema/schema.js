@@ -57,29 +57,42 @@ const RootQuery = new GraphQLObjectType({
         contract: { type: GraphQLString }
       },
       resolve(parent, args) {
-        if (!args.searchTerm || args.searchTerm.trim() === '') {
-          return Job.find()
-        };
-        const queryRegex = new RegExp(args.searchTerm, 'i');
-        const searchFields = Object.keys(Job.schema.paths).filter(field=>field!=='_id' && field!=='__v')
+        let query = {};
+    
+        if (args.searchTerm && args.searchTerm.trim() !== '') {
+          const queryRegex = new RegExp(args.searchTerm, 'i');
+          const searchFields = Object.keys(Job.schema.paths).filter(field => field !== '_id' && field !== '__v');
+    
+          const searchTerms = searchFields.map(field => {
+            if (field === 'requirements' || field === 'role') {
+              return [
+                { [`${field}.content`]: { $regex: queryRegex } },
+                { [`${field}.items`]: { $regex: queryRegex } }
+              ];
+            }
+    
+            return { [field]: { $regex: queryRegex } };
+          });
+    
+          const flattenedSearchTerms = [].concat(...searchTerms);
+          query.$or = flattenedSearchTerms;
+        }
+    
+        // New logic for location and contract
+        if (args.location && args.location.trim() !== '') {
+          query.location = { $regex: new RegExp(args.location, 'i') };
+         
+        }
+    
+        if (args.contract && args.contract.trim() !== '') {
+          query.contract = { $regex: new RegExp(args.contract, 'i') };
+        }
         
-        const searchTerms = searchFields.map(field => {
-          if (field === 'requirements' || field === 'role') {
-            return [
-              { [`${field}.content`]: { $regex: queryRegex }  },
-              { [`${field}.items`]:  {$regex: queryRegex } }
-            ]
-          };
-
-          return { [field]: { $regex: queryRegex } }
-
-        });
-
-        const flattenedSearchTerms = [].concat(...searchTerms)
-        return Job.find({ $or: flattenedSearchTerms });
-      
+        console.log(args.location)
+        return Job.find(query);
       }
     }
+    
   }
 });
 
