@@ -1,12 +1,14 @@
-import React, { useContext, useState} from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import { useQuery } from '@apollo/client';
 import { SEARCH_JOBS } from '../queries/jobQueries';
 import { Search } from '../models/models';
 import SearchBar from '../components/SearchBar';
 import JobCardsPage from './JobCardsPage';
 import { GlobalContext } from '../context/GlobalState';
+import { Job } from '../models/models';
 
 const MainPage: React.FC = () => {
+  const [jobsData, setJobsData] = useState<Job[]>([]);
   const [formData, setFormData] = useState<Search>({
     keyword: '',
     location: '',
@@ -16,6 +18,12 @@ const MainPage: React.FC = () => {
   const { keyword, location, isFullTime } = formData;
   const { isDarkTheme } = useContext(GlobalContext);
   const { loading, error, data, refetch } = useQuery(SEARCH_JOBS);
+
+  useEffect(() => {
+    if (data) {
+     setJobsData(data.jobs)
+   }
+  }, [data]);
 
   
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,10 +47,10 @@ const MainPage: React.FC = () => {
       await refetch({
         searchTerm: keyword,
         location,
-        contract:isFullTime ? 'full time' : ''
+        contract: isFullTime ? 'full time' : '',
+        lastItemId: data.jobs[data.jobs.length - 1]._id
       });
       
-      console.log(location)
     } catch (error) {
     } finally {
       setIsSearchSubmitted(true);
@@ -57,12 +65,25 @@ const MainPage: React.FC = () => {
     setIsSearchSubmitted(false)
   }
 
+  const loadMoreHandler = async () => {
+    try {
+      const newJobsData = await refetch({ lastItemId: jobsData[jobsData.length - 1]._id });
+      const newJobsArr = newJobsData.data.jobs
+      
+      setJobsData(prevState => [...prevState, ...newJobsArr]);
+
+    } catch (error) {
+      
+    }
+  }
+
+  
   
   return (
     <main className={`main-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
     
       <SearchBar formData={formData} setFormData={setFormData} submitHandler={submitHandler} onChangeHandler={onChangeHandler} />
-      <JobCardsPage loading={loading} error={error} data={data}  clearSearchHandler={clearSearchHandler} isSearchSubmitted={isSeachSubmitted} />
+      <JobCardsPage loading={loading} error={error} jobsData={jobsData}  clearSearchHandler={clearSearchHandler} isSearchSubmitted={isSeachSubmitted} loadMoreHandler={loadMoreHandler}  />
     </main>
   )
 }

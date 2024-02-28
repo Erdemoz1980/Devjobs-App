@@ -9,7 +9,7 @@ interface Role {
 }
 
 interface Job {
-  id: string,
+  _id: string,
   company: string,
   logo: string,
   logoBackground: string,
@@ -43,7 +43,7 @@ interface GraphQLError {
 interface ApolloQuery<T>{
   loading: boolean,
   error: GraphQLError | undefined,
-  data:T  
+  jobsData:Job[]  
 }
 
 

@@ -22,7 +22,7 @@ const CommonType = new GraphQLObjectType({
 const JobType = new GraphQLObjectType({
   name: 'Job',
   fields: () => ({
-    id: { type: GraphQLID },
+    _id: { type: GraphQLID },
     company: { type: GraphQLString },
     logo: { type: GraphQLString },
     logoBackground: { type: GraphQLString },
@@ -44,7 +44,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     job: {
       type: JobType,
-      args: { id: { type: GraphQLID } },
+      args: { _id: { type: GraphQLID } },
       resolve(parent, args) {
         return Job.findById(args.id)
       }
@@ -54,9 +54,11 @@ const RootQuery = new GraphQLObjectType({
       args: {
         searchTerm: { type: GraphQLString },
         location: { type: GraphQLString },
-        contract: { type: GraphQLString }
+        contract: { type: GraphQLString },
+        lastItemId: { type: GraphQLID }
       },
       resolve(parent, args) {
+        const resultsPerPage = 6;
         let query = {};
     
         if (args.searchTerm && args.searchTerm.trim() !== '') {
@@ -70,7 +72,6 @@ const RootQuery = new GraphQLObjectType({
                 { [`${field}.items`]: { $regex: queryRegex } }
               ];
             }
-    
             return { [field]: { $regex: queryRegex } };
           });
     
@@ -81,18 +82,19 @@ const RootQuery = new GraphQLObjectType({
         // New logic for location and contract
         if (args.location && args.location.trim() !== '') {
           query.location = { $regex: new RegExp(args.location, 'i') };
-         
         }
     
         if (args.contract && args.contract.trim() !== '') {
           query.contract = { $regex: new RegExp(args.contract, 'i') };
         }
-        
-        console.log(args.location)
-        return Job.find(query);
+
+        //Add condition for cursor-based pagination
+        if (args.lastItemId) {
+          query._id = { $gt: args.lastItemId }
+        }
+        return Job.find(query).limit(resultsPerPage).exec();
       }
     }
-    
   }
 });
 

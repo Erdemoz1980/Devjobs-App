@@ -7,7 +7,7 @@ import { GlobalContext} from '../context/GlobalState';
 interface JobCardProps extends Job {};
 
 const JobCard: React.FC<JobCardProps> = ({...job }) => {
-  const {id, company, logoBackground, logo, postedAt, contract, position, location } = job;
+  const {_id, company, logoBackground, logo, postedAt, contract, position, location } = job;
    
   const { isDarkTheme } = useContext(GlobalContext);
  
@@ -23,7 +23,7 @@ const JobCard: React.FC<JobCardProps> = ({...job }) => {
           <p>{postedAt}</p><p className='job-meta-separator'></p><p>{contract}</p>
         </section>
         
-        <Link to={`/jobdetails/${id}`}>
+        <Link to={`/jobdetails/${_id}`}>
         <section className='job-position-wrapper'>
           <h3>{position}</h3>
           </section>
