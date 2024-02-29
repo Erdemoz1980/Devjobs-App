@@ -58,7 +58,6 @@ const RootQuery = new GraphQLObjectType({
         lastItemId: { type: GraphQLID }
       },
       resolve(parent, args) {
-        const resultsPerPage = 3;
         let query = {};
     
         if (args.searchTerm && args.searchTerm.trim() !== '') {
@@ -92,7 +91,7 @@ const RootQuery = new GraphQLObjectType({
         if (args.lastItemId) {
           query._id = { $gt: args.lastItemId }
         }
-        return Job.find(query).sort({ _id: 1 });
+        return Job.find(query).limit(3).sort({ _id: 1 });
       }
     }
   }

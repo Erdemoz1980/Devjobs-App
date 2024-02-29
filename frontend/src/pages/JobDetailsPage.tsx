@@ -16,10 +16,6 @@ const JobDetailsPage: React.FC = () => {
   const { loading, error, data } = useQuery(GET_JOB_DETAILS, {
    variables:{id:params.id}
   });
-
-
-  console.log(params.id)
-  console.log(data?.job)
   
   if (loading) return <Loader />
   if (error) return <div className='main-page-wrapper container-md'>
