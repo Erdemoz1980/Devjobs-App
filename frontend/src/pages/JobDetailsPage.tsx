@@ -17,6 +17,9 @@ const JobDetailsPage: React.FC = () => {
    variables:{id:params.id}
   });
 
+
+  console.log(params.id)
+  console.log(data?.job)
   
   if (loading) return <Loader />
   if (error) return <div className='main-page-wrapper container-md'>

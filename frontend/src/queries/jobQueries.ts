@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 
 const GET_JOB_DETAILS = gql`
 query getJobDetails ($id:ID!){
-  job(id:$id){
-    id
+  job(_id:$id){
+    _id
     company
     logoBackground
     position

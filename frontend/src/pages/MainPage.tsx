@@ -21,11 +21,11 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-     setJobsData(data.jobs)
-   }
-  }, [data]);
+      setJobsData(data.jobs.slice(0,3));
+    }
+  },[data])
 
-  
+ 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prevState => {
       if (e.target.name === 'isFullTime') {
@@ -48,10 +48,10 @@ const MainPage: React.FC = () => {
         searchTerm: keyword,
         location,
         contract: isFullTime ? 'full time' : '',
-        lastItemId: data.jobs[data.jobs.length - 1]._id
-      });
+      });  
       
     } catch (error) {
+
     } finally {
       setIsSearchSubmitted(true);
       setTimeout(() => {
@@ -65,18 +65,14 @@ const MainPage: React.FC = () => {
     setIsSearchSubmitted(false)
   }
 
-  const loadMoreHandler = async () => {
+  const loadMoreHandler = () => {
     try {
-      const newJobsData = await refetch({ lastItemId: jobsData[jobsData.length - 1]._id });
-      const newJobsArr = newJobsData.data.jobs
-      
-      setJobsData(prevState => [...prevState, ...newJobsArr]);
-
+      const nextJobs = data.jobs.slice(jobsData.length, jobsData.length + 3);
+      setJobsData(prevState => [...prevState, ...nextJobs]);
     } catch (error) {
-      
+      console.error(error);
     }
-  }
-
+  };
   
   
   return (
@@ -87,5 +83,6 @@ const MainPage: React.FC = () => {
     </main>
   )
 }
+
 
 export default MainPage
