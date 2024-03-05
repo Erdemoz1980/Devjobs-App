@@ -21,7 +21,7 @@ const cache = new InMemoryCache({
 })
 
 const client = new ApolloClient({
-  uri: "https://vercel.com/_next/static/chunks/59157-155d91716d59ef39.js?dpl=dpl_AC8Kfwk9KzUVuQfNYJ4B24p9woom",
+  uri: "https://devjobs-web-app-366705acc740.herokuapp.com/",
   cache
 })
 

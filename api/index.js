@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 const corsOptions = {
-  origin: 'https://devjobs.erdemoz.io/', 
+  origin: 'http://localhost:3000/', 
   credentials: true, 
 };
 
