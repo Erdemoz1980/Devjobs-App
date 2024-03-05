@@ -10,7 +10,7 @@ const app = express();
 
 app.use((req, res, next) => {
   // Set CORS headers for all routes
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin',req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
