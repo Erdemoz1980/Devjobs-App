@@ -1,28 +1,33 @@
 const express = require('express');
-const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 require('dotenv').config();
 const connectDB = require('./config/db');
-const schema = require('./schema/schema')
-
+const schema = require('./schema/schema');
 
 const port = process.env.PORT || 5000;
 
 const app = express();
-const corsOptions = {
-  origin: '*', 
-  credentials: true, 
-};
 
-app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  // Set CORS headers for all routes
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-connectDB()
+  if (req.method === 'OPTIONS') {
+    // Respond to preflight request
+    res.status(200).end();
+  } else {
+    // Continue with the actual request
+    next();
+  }
+});
 
-app.options('/graphql', cors());
+connectDB();
 
 app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql:process.env.NODE_ENV==='dev'
-}))
+  graphiql: process.env.NODE_ENV === 'dev',
+}));
 
-app.listen(port, ()=>console.log(`Server is listening on port:${port}`))
+app.listen(port, () => console.log(`Server is listening on port:${port}`));
