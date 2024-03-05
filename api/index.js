@@ -18,11 +18,11 @@ app.use(cors(corsOptions));
 
 connectDB()
 
+app.options('/graphql', cors());
+
 app.use('/graphql', graphqlHTTP({
   schema,
   graphiql:process.env.NODE_ENV==='dev'
 }))
-
-
 
 app.listen(port, ()=>console.log(`Server is listening on port:${port}`))
