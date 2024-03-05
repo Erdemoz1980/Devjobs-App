@@ -8,20 +8,12 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-app.use((req, res, next) => {
-  // Set CORS headers for all routes
-  res.setHeader('Access-Control-Allow-Origin',req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    // Respond to preflight request
-    res.status(200).end();
-  } else {
-    // Continue with the actual request
-    next();
-  }
-});
+app.use(
+  cors({
+      origin: "http://localhost:3000", 
+      credentials: true,
+  })
+);
 
 connectDB();
 

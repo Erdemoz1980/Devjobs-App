@@ -23,7 +23,8 @@ const cache = new InMemoryCache({
 const client = new ApolloClient({
   uri: "https://devjobs-web-app-366705acc740.herokuapp.com/graphql",
   cache
-})
+});
+
 
 const App: React.FC = () => {
 
