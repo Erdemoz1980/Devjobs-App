@@ -24,7 +24,7 @@ query getJobDetails ($id:ID!){
   }
 }
 `;
-
+/*
 const SEARCH_JOBS = gql`
 query searchJobs($searchTerm: String, $location:String, $contract:String, $lastItemId:ID){
   jobs(searchTerm:$searchTerm, location:$location, contract:$contract, lastItemId:$lastItemId){
@@ -40,7 +40,32 @@ query searchJobs($searchTerm: String, $location:String, $contract:String, $lastI
     apply
 
   }
-}
+}`;*/
+const SEARCH_JOBS = gql`
+  query searchJobs($searchTerm: String, $location: String, $contract: String, $lastItemId: ID) {
+    jobs(searchTerm: $searchTerm, location: $location, contract: $contract, lastItemId: $lastItemId) {
+      jobs {
+        _id
+        company
+        logo
+        logoBackground
+        position
+        postedAt
+        contract
+        location
+        website
+        apply
+      }
+      totalCount
+    }
+  }
 `;
 
-export { GET_JOB_DETAILS, SEARCH_JOBS };
+
+
+export { SEARCH_JOBS, GET_JOB_DETAILS };
+
+
+
+
+

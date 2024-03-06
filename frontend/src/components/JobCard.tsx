@@ -10,8 +10,6 @@ const JobCard: React.FC<JobCardProps> = ({...job }) => {
   const {_id, company, logoBackground, logo, postedAt, contract, position, location } = job;
    
   const { isDarkTheme } = useContext(GlobalContext);
-
-  console.log(logo)
  
   return (
 

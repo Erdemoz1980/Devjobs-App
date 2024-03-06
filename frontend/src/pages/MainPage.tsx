@@ -21,9 +21,10 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      setJobsData(data.jobs);
+      setJobsData(data.jobs.jobs);
     }
-  },[data])
+  }, [data])
+
 
  
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +69,8 @@ const MainPage: React.FC = () => {
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prev;
           return {
-            jobs: [...prev.jobs, ...fetchMoreResult.jobs],
+            jobs: [...prev.jobs.jobs, ...fetchMoreResult.jobs.jobs],
+            totalCount:fetchMoreResult.jobs.totalCount
           };
         },
       });

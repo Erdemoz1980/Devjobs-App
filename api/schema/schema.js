@@ -1,6 +1,7 @@
 const { Job } = require('../models/models');
 const {
   GraphQLID,
+  GraphQLInt,
   GraphQLString,
   GraphQLList,
   GraphQLObjectType,
@@ -50,14 +51,20 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     jobs: {
-      type: new GraphQLList(JobType),
+      type: new GraphQLObjectType({
+        name: 'JobsWithCount',
+        fields: {
+          jobs: { type: new GraphQLList(JobType) },
+          totalCount: { type: GraphQLInt },
+        },
+      }),
       args: {
         searchTerm: { type: GraphQLString },
         location: { type: GraphQLString },
         contract: { type: GraphQLString },
         lastItemId: { type: GraphQLID }
       },
-      resolve(parent, args) {
+      async resolve (parent, args) {
         let query = {};
     
         if (args.searchTerm && args.searchTerm.trim() !== '') {
@@ -91,7 +98,10 @@ const RootQuery = new GraphQLObjectType({
         if (args.lastItemId) {
           query._id = { $gt: args.lastItemId }
         }
-        return Job.find(query).limit(3).sort({ _id: 1 });
+
+        const jobs = await Job.find(query).limit(3).sort({ _id: 1 });
+        const totalCount = await Job.countDocuments(query);
+        return { jobs, totalCount };
       }
     }
   }
