@@ -23,6 +23,8 @@ const JobDetailsPage: React.FC = () => {
   </div>
 
   const { company, logo, logoBackground, position, postedAt, contract, location, website, description, requirements, role } = data.job; 
+ 
+
 
   return (
     <section className={`job-details-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
@@ -30,10 +32,10 @@ const JobDetailsPage: React.FC = () => {
       <JobDetailsHeader company={company} logo={logo} logoBackground={logoBackground} website={website} />
       <JobDetails
         postedAt={postedAt} contract={contract}
-        position={position} location={location}
+        position={position} location={location} website={website}
         description={description} requirements={requirements} role={role} />
       </div>
-      <JobDetailsFooter position={position} company={company} />
+      <JobDetailsFooter position={position} company={company} website={website} />
       </section>
   )
 }

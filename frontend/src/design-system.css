@@ -193,6 +193,10 @@ transition: all var(--trMain);
   color:#fff;
 }
 
+.btn-dark:hover{
+  background: var(--clrMediumGrey);
+}
+
 /*Spinner*/
 .loader{
   border:16px solid #dfdfdf;

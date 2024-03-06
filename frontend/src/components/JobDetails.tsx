@@ -3,9 +3,9 @@ import { Job } from '../models/models';
 import { GlobalContext } from '../context/GlobalState';
 
 
-interface JobDetailsProps extends Pick<Job, 'postedAt'|'contract'|'position'|'location'|'description'|'requirements'|'role'> { };
+interface JobDetailsProps extends Pick<Job, 'postedAt'|'contract'|'position'|'location'|'description'|'requirements'|'role' | 'website'> { };
 
-const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, location, description, requirements, role }) => {
+const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, location, website, description, requirements, role }) => {
   
   const { isDarkTheme } = useContext(GlobalContext);
   
@@ -24,7 +24,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, l
             <h4 className='size-h4'>{location}</h4>
           </div>
         </div>
-        <button className="btn btn-large btn-dark-violet">Apply Now</button>
+        <a href={website} target='_blank' rel='noreferrer' className="btn btn-large btn-dark-violet">Apply Now</a>
       </header>
 
       <section className="job-desc-wrapper mb-4">

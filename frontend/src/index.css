@@ -401,6 +401,10 @@ transform:translateX(-50%);
   background: var(--clrVeryDarkBlue);
 }
 
+.job-details-header.dark-theme .company-website{
+  color:var(--clrDarkGrey);
+}
+
 .job-details-header.dark-theme .company-name,
 .job-details-header.dark-theme .company-name h2 {
  color:#fff; 
@@ -426,8 +430,6 @@ height: 40px;
  gap:13px;
  transition: var(--trTheme);
 }
-
-.job-details-header 
 
 /*Job Details Body*/
 .job-details-wrapper{

@@ -5,6 +5,7 @@ query getJobDetails ($id:ID!){
   job(_id:$id){
     _id
     company
+    logo
     logoBackground
     position
     postedAt

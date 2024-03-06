@@ -9,6 +9,8 @@ const JobDetailsHeader: React.FC<JobDetailsHeaderProps> = ({ company, logo, logo
   const { isDarkTheme } = useContext(GlobalContext);
 
 
+
+
   return (
     <header className={`job-details-header ${isDarkTheme ? 'dark-theme' :''}`}>
       <div className='info-container'>
