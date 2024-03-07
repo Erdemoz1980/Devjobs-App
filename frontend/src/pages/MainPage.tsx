@@ -86,7 +86,9 @@ const MainPage: React.FC = () => {
   return (
     <main className={`main-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
       <SearchBar formData={formData} setFormData={setFormData} submitHandler={submitHandler} onChangeHandler={onChangeHandler} />
-      <JobCardsPage loading={loading} error={error} jobsData={jobsData}  clearSearchHandler={clearSearchHandler} isSearchSubmitted={isSeachSubmitted} loadMoreHandler={loadMoreHandler}  />
+      <JobCardsPage loading={loading} error={error} jobsData={jobsData} totalCount={data?.jobs.totalCount}
+        clearSearchHandler={clearSearchHandler} isSearchSubmitted={isSeachSubmitted}
+        loadMoreHandler={loadMoreHandler} />
     </main>
   )
 }

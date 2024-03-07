@@ -43,7 +43,8 @@ interface GraphQLError {
 interface ApolloQuery<T>{
   loading: boolean,
   error: GraphQLError | undefined,
-  jobsData:Job[]  
+  jobsData: Job[],
+  totalCount:number
 }
 
 

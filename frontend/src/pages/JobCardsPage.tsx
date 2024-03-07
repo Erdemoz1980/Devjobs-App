@@ -10,7 +10,7 @@ interface JobsCardPageProps<T> extends ApolloQuery<T>{
   loadMoreHandler: ()=>void,
 }
 
-const JobCardsPage: React.FC<JobsCardPageProps<{ jobsData: Job[] }>> = ({ loading, error, jobsData, isSearchSubmitted, clearSearchHandler, loadMoreHandler }) => {
+const JobCardsPage: React.FC<JobsCardPageProps<{ jobsData: Job[] }>> = ({ loading, error, jobsData, totalCount,  isSearchSubmitted, clearSearchHandler, loadMoreHandler }) => {
   const { isDarkTheme } = useContext(GlobalContext);
   
   if (loading) return <div className="job-cards-page-wrapper container-lg">
@@ -25,7 +25,7 @@ const JobCardsPage: React.FC<JobsCardPageProps<{ jobsData: Job[] }>> = ({ loadin
       ) : jobsData.map((job: Job) => (
         <JobCard key={job._id} {...job} />
       ))}
-      <button className="btn btn-large btn-dark-violet load-more" onClick={loadMoreHandler}>Load More</button>
+      {totalCount > 3 && <button className="btn btn-large btn-dark-violet load-more" onClick={loadMoreHandler}>Load More</button>}
     </section>
   );
 };
