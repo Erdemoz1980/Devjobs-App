@@ -69,11 +69,14 @@ const MainPage: React.FC = () => {
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prev;
           return {
-            jobs: [...prev.jobs.jobs, ...fetchMoreResult.jobs.jobs],
-            totalCount:fetchMoreResult.jobs.totalCount
+            jobs: {
+              jobs: [...prev.jobs.jobs, ...fetchMoreResult.jobs.jobs],
+              totalCount: fetchMoreResult.jobs.totalCount,
+            },
           };
         },
-      });
+      }
+      );
     } catch (error) {
       console.error(error);
     }

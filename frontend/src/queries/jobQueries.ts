@@ -38,7 +38,7 @@ query searchJobs($searchTerm: String, $location:String, $contract:String, $lastI
     location
     website
     apply
-
+    totalCount
   }
 }`;*/
 const SEARCH_JOBS = gql`

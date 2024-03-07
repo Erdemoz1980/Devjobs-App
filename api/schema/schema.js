@@ -35,7 +35,7 @@ const JobType = new GraphQLObjectType({
     apply: { type: GraphQLString },
     description: { type: GraphQLString },
     requirements: { type: CommonType },
-    role: { type: CommonType }
+    role: { type: CommonType },
   })
 });
 
@@ -101,6 +101,7 @@ const RootQuery = new GraphQLObjectType({
 
         const jobs = await Job.find(query).limit(3).sort({ _id: 1 });
         const totalCount = await Job.countDocuments(query);
+        console.log(totalCount)
         return { jobs, totalCount };
       }
     }

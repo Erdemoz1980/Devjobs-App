@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 connectDB();
 
-app.use('/graphql', graphqlHTTP({
+app.use('/devjobs', graphqlHTTP({
   schema,
   graphiql: process.env.NODE_ENV === 'dev',
 }));
