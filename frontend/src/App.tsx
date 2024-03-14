@@ -21,7 +21,7 @@ const cache = new InMemoryCache({
 })
 
 const client = new ApolloClient({
-  uri: "http://localhost:7000/devjobs",
+  uri: "https://devjobs-web-app-366705acc740.herokuapp.com/devjobs",
   cache
 });
 

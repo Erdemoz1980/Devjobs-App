@@ -542,3 +542,35 @@ margin-bottom:8px;
   color:var(--clrDarkGrey)
 }
 
+
+/*Responsive Design*/
+/*Tablet*/
+@media screen and (max-width:1110px){
+
+
+  /*Navbar body Tablet*/
+  .container-lg{
+    max-width: 689px;
+  }
+
+   /*Searchbar Tablet*/
+  .searchbar-wrapper{
+   grid-template-columns: 222px 213px 252px;
+  }
+
+  .btn-1{
+    width: 80px;
+    height: 48px;
+  }
+
+  /*Job Card Page Tablet*/
+  .job-cards-page-wrapper{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .job-card-wrapper {
+    width: 339px
+  }
+};
+
+
