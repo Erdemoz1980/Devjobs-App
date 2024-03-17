@@ -230,6 +230,17 @@ border-bottom: 515px solid #6c76df;
   align-items: center;
 }
 
+/*SearchBar Wrapper Mobile*/
+.searchbar-wrapper-mobile{
+  width: 327px;
+  height: 217px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
 /*Checkmark styling*/
 .fulltime-input  svg{
   position: absolute;
@@ -546,8 +557,6 @@ margin-bottom:8px;
 /*Responsive Design*/
 /*Tablet*/
 @media screen and (max-width:1110px){
-
-
   /*Navbar body Tablet*/
   .container-lg{
     max-width: 689px;
@@ -565,12 +574,27 @@ margin-bottom:8px;
 
   /*Job Card Page Tablet*/
   .job-cards-page-wrapper{
-    grid-template-columns: repeat(2, 1fr);
+   grid-template-columns: repeat(2, 1fr);
   }
 
   .job-card-wrapper {
     width: 339px
   }
-};
+}
+
+/*Responsive Design Mobile*/
+@media screen and (max-width:740px){
+ /*Job Cards Mobile*/
+ .container-lg {
+  max-width: 327px;
+ }
+
+ .job-cards-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 170px;
+ }
+ 
+}
 
 
