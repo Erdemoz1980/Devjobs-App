@@ -44,6 +44,7 @@ const MainPage: React.FC = () => {
 
   const submitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsOpenModal(false)
     try {
       await refetch({
         searchTerm: keyword,

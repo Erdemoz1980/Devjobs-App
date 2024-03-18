@@ -27,7 +27,7 @@ const SearchBarMobile:React.FC<SearchBarMobileProps> = ({submitHandler, onChange
           Full Time Only
         </label>
                
-        <button type="submit" className='btn btn-1'>Search</button>
+        <button type="submit" className='btn mobile-btn'>Search</button>
         </div>
 
 

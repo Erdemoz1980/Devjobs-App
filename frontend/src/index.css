@@ -185,7 +185,49 @@ border-bottom: 515px solid #6c76df;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
+
+.searchbar-wrapper-mobile{
+  padding: 24px;
+  position: relative;
+  border-radius: 8px;
+}
+
+.searchbar-wrapper-mobile::after{
+  content:'';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: var(--clrLightGrey);
+  left:0;
+  top:72px;
+}
+
+.searchbar-wrapper-mobile .input-wrapper.location-input{
+  display: flex;
+  padding-bottom: 24px;
+}
+
+.searchbar-wrapper-mobile .location-input input{
+border: none;
+font-size: 16px;
+margin-left: 16px;
+}
+
+.searchbar-wrapper-mobile .input-wrapper.fulltime-input{
+margin-top: 24px;
+}
+
+.mobile-btn{
+  background: var(--clrViolet);
+  color:#fff;
+  width: 100%;
+  height:48px;
+  margin-top: 24px;
+}
+
+
 
 /*Icons in Keyword Input*/
 .keyword-icon-container{
