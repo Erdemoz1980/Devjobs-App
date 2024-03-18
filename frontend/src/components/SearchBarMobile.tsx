@@ -6,15 +6,13 @@ interface SearchBarMobileProps {
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isFullTime: boolean,
   location: string,
-  responsiveText: {
-    placeholder: string,
-    labelText:string
-  }
+  submitHandler:(e:React.ChangeEvent<HTMLFormElement>)=>void
 }
 
-const SearchBarMobile:React.FC<SearchBarMobileProps> = ({onChangeHandler, isFullTime, location, responsiveText}) => {
+const SearchBarMobile:React.FC<SearchBarMobileProps> = ({submitHandler, onChangeHandler, isFullTime, location}) => {
   return (
-    <div className='searchbar-wrapper-mobile'>
+    <div className={`searchbar-wrapper-mobile-overlay`}>
+    <form className='searchbar-wrapper-mobile' onSubmit={submitHandler}>
         <label htmlFor='location' className="input-wrapper location-input">
         <IconLocation />
         <input type="text" name="location" id="location" placeholder='Filter by location...'
@@ -26,14 +24,15 @@ const SearchBarMobile:React.FC<SearchBarMobileProps> = ({onChangeHandler, isFull
         <input type="checkbox" name="isFullTime" id="isFullTime" checked={isFullTime} onChange={onChangeHandler} />
         <label htmlFor="isFullTime">
           <IconCheck />
-          {responsiveText.labelText}
+          Full Time Only
         </label>
                
         <button type="submit" className='btn btn-1'>Search</button>
         </div>
 
 
-    </div>
+      </form>
+      </div>
   )
 }
 

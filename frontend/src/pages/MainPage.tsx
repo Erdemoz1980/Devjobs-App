@@ -6,6 +6,7 @@ import SearchBar from '../components/SearchBar';
 import JobCardsPage from './JobCardsPage';
 import { GlobalContext } from '../context/GlobalState';
 import { Job } from '../models/models';
+import SearchBarMobile from '../components/SearchBarMobile';
 
 const MainPage: React.FC = () => {
   const [jobsData, setJobsData] = useState<Job[]>([]);
@@ -15,6 +16,7 @@ const MainPage: React.FC = () => {
     isFullTime: false,
   });
   const [isSeachSubmitted, setIsSearchSubmitted] = useState<boolean>(false);
+  const [isModalOpen, setIsOpenModal] = useState<boolean>(false);
   const { keyword, location, isFullTime } = formData;
   const { isDarkTheme } = useContext(GlobalContext);
   const { loading, error, data, refetch, fetchMore } = useQuery(SEARCH_JOBS);
@@ -85,10 +87,17 @@ const MainPage: React.FC = () => {
   
   return (
     <main className={`main-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
-      <SearchBar formData={formData} setFormData={setFormData} submitHandler={submitHandler} onChangeHandler={onChangeHandler} />
+      <SearchBar formData={formData} setFormData={setFormData} submitHandler={submitHandler} onChangeHandler={onChangeHandler} setIsModalOpen={setIsOpenModal} />
       <JobCardsPage loading={loading} error={error} jobsData={jobsData} totalCount={data?.jobs.totalCount}
         clearSearchHandler={clearSearchHandler} isSearchSubmitted={isSeachSubmitted}
         loadMoreHandler={loadMoreHandler} />
+      {isModalOpen && (
+        <SearchBarMobile
+          onChangeHandler={onChangeHandler} submitHandler={submitHandler}
+          isFullTime={isFullTime} location={location} />
+      )
+
+      }
     </main>
   )
 }
