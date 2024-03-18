@@ -7,10 +7,12 @@ interface SearchBarMobileProps {
   isFullTime: boolean,
   location: string,
   submitHandler:(e:React.ChangeEvent<HTMLFormElement>)=>void,
-  setIsModalOpen:React.Dispatch<React.SetStateAction<boolean>>
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>,
+  disabled:boolean
 }
 
-const SearchBarMobile:React.FC<SearchBarMobileProps> = ({submitHandler, onChangeHandler, isFullTime, location, setIsModalOpen}) => {
+const SearchBarMobile:React.FC<SearchBarMobileProps> = ({submitHandler, onChangeHandler, isFullTime, location, setIsModalOpen, disabled, setDisabled}) => {
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -36,7 +38,7 @@ const SearchBarMobile:React.FC<SearchBarMobileProps> = ({submitHandler, onChange
             Full Time Only
           </label>
 
-          <button type="submit" className='btn mobile-btn'>Search</button>
+          <button type="submit" className='btn mobile-btn' disabled={disabled}>Search</button>
         </div>
       </form>
     </div>

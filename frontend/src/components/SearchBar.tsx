@@ -11,10 +11,12 @@ interface SearchBarProps {
   setFormData: React.Dispatch<React.SetStateAction<Search>>,
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void,
   submitHandler: (e: React.ChangeEvent<HTMLFormElement>) => void,
-  setIsModalOpen:React.Dispatch<React.SetStateAction<boolean>>
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  setDisabled:React.Dispatch<React.SetStateAction<boolean>>,
+  disabled:boolean,
 };
 
-const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHandler, submitHandler, setIsModalOpen }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ formData, onChangeHandler, submitHandler, setIsModalOpen, disabled, setDisabled }) => {
   const [isMobileScreen, setIsMobileScreen] = useState<boolean>(false);
   const { keyword, location, isFullTime } = formData;
   const { isDarkTheme } = useContext(GlobalContext);
@@ -22,6 +24,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHa
     placeholder: 'Filter by title, companies, expertise...',
     labelText: 'Full Time Only'
   });
+
+  //Check if all search params are falsy
+  useEffect(() => {
+    if (!keyword && !location && !isFullTime) {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
+  }, [keyword, location, isFullTime]);
 
 
   useEffect(() => {
@@ -72,10 +83,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHa
 
 
   //Separate submit handler function for mobile devices
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
+    if (!keyword && !location && !isFullTime) {
+     setDisabled(true)
+    }
     submitHandler(e);
   }
-
 
 
   return (
@@ -84,8 +97,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHa
       <label htmlFor='keyword' className="input-wrapper keyword-input">
         <div className='keyword-icon-container'>
           {isMobileScreen ? <>
-            <div className='filter-icon-wrapper' onClick={() => setIsModalOpen(true)}><IconFilter /> </div><div className='search-icon-container' onClick={(e)=>handleSubmit(e)}>
-              <IconSearch isMobileScreen={isMobileScreen} /></div>
+            <div className='filter-icon-wrapper' onClick={() => setIsModalOpen(true)}><IconFilter /> </div><div className={`search-icon-container ${disabled ? 'disabled' : ''}`} onClick={(e)=>handleSubmit(e)}>
+              <IconSearch isMobileScreen={isMobileScreen}/></div>
           </> : <IconSearch isMobileScreen={isMobileScreen} />}
         </div>
         
@@ -109,7 +122,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHa
           {responsiveText.labelText}
         </label>
                  
-        <button type="submit" className='btn btn-1'>Search</button>
+        <button type="submit" className='btn btn-1' disabled={!keyword && !location && !isFullTime}>Search</button>
       </div>
         
     </form>

@@ -330,6 +330,11 @@ margin-top: 24px;
   margin-right: 16px;
 }
 
+.fulltime-input button:disabled{
+  background: var(--clrLightGrey);
+  cursor: default
+}
+
 .clear-button{
   position: absolute;
   top:-87px;
@@ -696,6 +701,11 @@ margin-bottom:8px;
   background: var(--clrViolet);
   border-radius: 5px;
   cursor: pointer;
+}
+
+.search-icon-container.disabled{
+  background: var(--clrLightGrey);
+  cursor: default;
 }
 
 .clear-button{

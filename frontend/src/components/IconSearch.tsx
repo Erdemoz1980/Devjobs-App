@@ -1,7 +1,7 @@
 import React from "react"
 
 interface IconSearchProps {
-  isMobileScreen:boolean
+  isMobileScreen: boolean,
 }
 
 const IconSearch:React.FC<IconSearchProps> = ({isMobileScreen}) => {

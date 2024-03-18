@@ -20,6 +20,7 @@ const MainPage: React.FC = () => {
   const { keyword, location, isFullTime } = formData;
   const { isDarkTheme } = useContext(GlobalContext);
   const { loading, error, data, refetch, fetchMore } = useQuery(SEARCH_JOBS);
+  const [disabled, setDisabled] = useState<boolean>(true);
 
   useEffect(() => {
     if (data) {
@@ -42,7 +43,9 @@ const MainPage: React.FC = () => {
     })
   };
 
-  const submitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
+  
+
+  const submitHandler = async (e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsOpenModal(false)
     try {
@@ -88,7 +91,9 @@ const MainPage: React.FC = () => {
   
   return (
     <main className={`main-page-wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
-      <SearchBar formData={formData} setFormData={setFormData} submitHandler={submitHandler} onChangeHandler={onChangeHandler} setIsModalOpen={setIsOpenModal} />
+      <SearchBar formData={formData} setFormData={setFormData} submitHandler={submitHandler}
+        onChangeHandler={onChangeHandler} setIsModalOpen={setIsOpenModal}
+        disabled={disabled} setDisabled={setDisabled} />
       <JobCardsPage loading={loading} error={error} jobsData={jobsData} totalCount={data?.jobs.totalCount}
         clearSearchHandler={clearSearchHandler} isSearchSubmitted={isSeachSubmitted}
         loadMoreHandler={loadMoreHandler} />
@@ -96,7 +101,7 @@ const MainPage: React.FC = () => {
         <SearchBarMobile
           setIsModalOpen={setIsOpenModal}
           onChangeHandler={onChangeHandler} submitHandler={submitHandler}
-          isFullTime={isFullTime} location={location} />
+          isFullTime={isFullTime} location={location} setDisabled={setDisabled} disabled={disabled} />
       )
 
       }
