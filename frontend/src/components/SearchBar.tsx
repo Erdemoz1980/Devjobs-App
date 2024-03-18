@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { Search } from '../models/models';
-import SearchBarMobile from './SearchBarMobile';
 import IconFilter from './IconFilter';
 import IconSearch from './IconSearch';
 import IconLocation from './IconLocation';
@@ -26,13 +25,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHa
 
 
   useEffect(() => {
-      //Determine if Mobile Device
+    //Determine if Mobile Device
     const updateMobileScreen = () => {
       setIsMobileScreen(window.innerWidth <= 740);
       // Check if window width is larger than 740 and modal is open, then close the modal
-    if (window.innerWidth > 740) {
-      setIsModalOpen(false);
-    }
+      if (window.innerWidth > 740) {
+        setIsModalOpen(false);
+      }
     };
   
     // Initial check
@@ -46,7 +45,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHa
     return () => {
       window.removeEventListener('resize', updateMobileScreen);
     };
-  }, []);
+  }, [setIsModalOpen]);
 
   useEffect(() => {
     //Update text input placeholder text based on screen size
@@ -72,13 +71,22 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHa
   }, []);
 
 
+  //Separate submit handler function for mobile devices
+  const handleSubmit = (e:any) => {
+    submitHandler(e);
+  }
+
+
 
   return (
     <form className={`searchbar-wrapper container-lg ${isDarkTheme ? 'dark-theme' : ''}`
     } onSubmit={submitHandler}>
       <label htmlFor='keyword' className="input-wrapper keyword-input">
         <div className='keyword-icon-container'>
-          {isMobileScreen ? <><div className='filter-icon-wrapper' onClick={()=>setIsModalOpen(true)}><IconFilter /> </div><div className='search-icon-container'><IconSearch isMobileScreen={isMobileScreen} /></div> </> : <IconSearch isMobileScreen={isMobileScreen} />}
+          {isMobileScreen ? <>
+            <div className='filter-icon-wrapper' onClick={() => setIsModalOpen(true)}><IconFilter /> </div><div className='search-icon-container' onClick={(e)=>handleSubmit(e)}>
+              <IconSearch isMobileScreen={isMobileScreen} /></div>
+          </> : <IconSearch isMobileScreen={isMobileScreen} />}
         </div>
         
         <input type="text" name="keyword" id="keyword" placeholder={responsiveText.placeholder}
@@ -87,22 +95,22 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, setFormData, onChangeHa
         />
       </label>
     
-            <label htmlFor='location' className={`input-wrapper location-input ${isMobileScreen ? 'invisible' : ''}`}>
-              <IconLocation />
-              <input type="text" name="location" id="location" placeholder='Filter by location...'
-                value={location}
-                onChange={onChangeHandler}
-              />
-            </label>
+      <label htmlFor='location' className={`input-wrapper location-input ${isMobileScreen ? 'invisible' : ''}`}>
+        <IconLocation />
+        <input type="text" name="location" id="location" placeholder='Filter by location...'
+          value={location}
+          onChange={onChangeHandler}
+        />
+      </label>
       <div className={`input-wrapper fulltime-input ${isMobileScreen ? 'invisible' : ''}`}>
-              <input type="checkbox" name="isFullTime" id="isFullTime" checked={isFullTime} onChange={onChangeHandler} />
-              <label htmlFor="isFullTime">
-                <IconCheck />
-                {responsiveText.labelText}
-              </label>
+        <input type="checkbox" name="isFullTime" id="isFullTime" checked={isFullTime} onChange={onChangeHandler} />
+        <label htmlFor="isFullTime">
+          <IconCheck />
+          {responsiveText.labelText}
+        </label>
                  
-              <button type="submit" className='btn btn-1'>Search</button>
-            </div>
+        <button type="submit" className='btn btn-1'>Search</button>
+      </div>
         
     </form>
   )

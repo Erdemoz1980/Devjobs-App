@@ -43,7 +43,7 @@ const MainPage: React.FC = () => {
   };
 
   const submitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     setIsOpenModal(false)
     try {
       await refetch({
@@ -94,6 +94,7 @@ const MainPage: React.FC = () => {
         loadMoreHandler={loadMoreHandler} />
       {isModalOpen && (
         <SearchBarMobile
+          setIsModalOpen={setIsOpenModal}
           onChangeHandler={onChangeHandler} submitHandler={submitHandler}
           isFullTime={isFullTime} location={location} />
       )

@@ -656,7 +656,7 @@ margin-bottom:8px;
  .job-cards-page-wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 170px;
+  margin-top: 220px;
  }
 
  /*Searchbar Mobile*/
@@ -698,8 +698,10 @@ margin-bottom:8px;
   cursor: pointer;
 }
 
+.clear-button{
+  top:-80px;
+}
 
- 
 }
 
 
