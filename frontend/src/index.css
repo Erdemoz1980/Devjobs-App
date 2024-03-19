@@ -189,9 +189,18 @@ border-bottom: 515px solid #6c76df;
 }
 
 .searchbar-wrapper-mobile{
+  width: 327px;
+  height: 217px;
   padding: 24px;
   position: relative;
   border-radius: 8px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchbar-wrapper-mobile.dark-theme{
+  background: var(--clrVeryDarkBlue);
 }
 
 .searchbar-wrapper-mobile::after{
@@ -204,9 +213,14 @@ border-bottom: 515px solid #6c76df;
   top:72px;
 }
 
+/*Searchbar Mobile Location*/
 .searchbar-wrapper-mobile .input-wrapper.location-input{
   display: flex;
   padding-bottom: 24px;
+}
+
+.searchbar-wrapper-mobile.dark-theme .location-input input{
+  background: var(--clrVeryDarkBlue);
 }
 
 .searchbar-wrapper-mobile .location-input input{
@@ -215,8 +229,35 @@ font-size: 16px;
 margin-left: 16px;
 }
 
+/*Full time checkbox Mobile*/
 .searchbar-wrapper-mobile .input-wrapper.fulltime-input{
 margin-top: 24px;
+}
+
+.searchbar-wrapper-mobile .full-time-label-mobile {
+  position: relative;
+  padding-left: 24px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.searchbar-wrapper-mobile.dark-theme .full-time-label-mobile {
+  color:#fff;
+}
+
+.searchbar-wrapper-mobile .full-time-label-mobile::after{
+  position: absolute;
+  content:'';
+  left:0;
+  width: 24px;
+  height: 24px;
+  background: var(--clrDarkGrey);
+}
+
+.searchbar-wrapper-mobile input[type="checkbox"]:checked + .full-time-label-mobile svg{
+  z-index: 2;
+  opacity: 1;
+  top:2px;
 }
 
 .mobile-btn{
@@ -227,7 +268,9 @@ margin-top: 24px;
   margin-top: 24px;
 }
 
-
+.mobile-btn.dark-theme:disabled{
+  background: var(--clrDarkGrey);
+}
 
 /*Icons in Keyword Input*/
 .keyword-icon-container{
@@ -290,16 +333,6 @@ margin-top: 24px;
   align-items: center;
 }
 
-/*SearchBar Wrapper Mobile*/
-.searchbar-wrapper-mobile{
-  width: 327px;
-  height: 217px;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-
-
-}
 
 /*Checkmark styling*/
 .fulltime-input  svg{
@@ -333,6 +366,10 @@ margin-top: 24px;
 .fulltime-input button:disabled{
   background: var(--clrLightGrey);
   cursor: default
+}
+
+.fulltime-input button.dark-theme:disabled{
+  background: var(--clrDarkGrey);
 }
 
 .clear-button{

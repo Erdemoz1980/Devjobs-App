@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 import IconCheck from './IconCheck';
 import IconLocation from './IconLocation';
 
@@ -13,6 +14,7 @@ interface SearchBarMobileProps {
 }
 
 const SearchBarMobile:React.FC<SearchBarMobileProps> = ({submitHandler, onChangeHandler, isFullTime, location, setIsModalOpen, disabled, setDisabled}) => {
+  const { isDarkTheme } = useContext(GlobalContext);
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -23,7 +25,7 @@ const SearchBarMobile:React.FC<SearchBarMobileProps> = ({submitHandler, onChange
 
   return (
     <div className={`searchbar-wrapper-mobile-overlay`} onClick={handleContainerClick}>
-      <form className='searchbar-wrapper-mobile' onSubmit={submitHandler}>
+      <form className={`searchbar-wrapper-mobile ${isDarkTheme ? 'dark-theme' : ''}`} onSubmit={submitHandler}>
         <label htmlFor='location' className="input-wrapper location-input">
           <IconLocation />
           <input type="text" name="location" id="location" placeholder='Filter by location...'
@@ -33,12 +35,12 @@ const SearchBarMobile:React.FC<SearchBarMobileProps> = ({submitHandler, onChange
         </label>
         <div className="input-wrapper fulltime-input">
           <input type="checkbox" name="isFullTime" id="isFullTime" checked={isFullTime} onChange={onChangeHandler} />
-          <label htmlFor="isFullTime">
+          <label htmlFor="isFullTime" className={`full-time-label-mobile ${isDarkTheme ? 'dark-theme' : ''}`}>
             <IconCheck />
             Full Time Only
           </label>
 
-          <button type="submit" className='btn mobile-btn' disabled={disabled}>Search</button>
+          <button type="submit" className={`btn mobile-btn ${isDarkTheme ? 'dark-theme' : ''}`} disabled={disabled}>Search</button>
         </div>
       </form>
     </div>

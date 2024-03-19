@@ -32,7 +32,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, onChangeHandler, submit
     } else {
       setDisabled(false)
     }
-  }, [keyword, location, isFullTime]);
+  }, [keyword, location, isFullTime, setDisabled]);
 
 
   useEffect(() => {
@@ -122,7 +122,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ formData, onChangeHandler, submit
           {responsiveText.labelText}
         </label>
                  
-        <button type="submit" className='btn btn-1' disabled={!keyword && !location && !isFullTime}>Search</button>
+        <button type="submit" className={`btn btn-1 ${isDarkTheme ? 'dark-theme' : ''}`} disabled={disabled}>Search</button>
       </div>
         
     </form>
