@@ -21,7 +21,7 @@ const JobCardsPage: React.FC<JobsCardPageProps<{ jobsData: Job[] }>> = ({ loadin
     <section className='job-cards-page-wrapper container-lg'>
       {isSearchSubmitted && <button onClick={clearSearchHandler} className={`btn btn-small ${isDarkTheme ? 'btn-dark-violet' : 'btn-light-violet'} clear-button container-lg`}>Clear Search</button>}
       {jobsData.length === 0 ? (
-      <p>No results found!</p>
+      <p className={`no-results-error ${isDarkTheme ? 'dark-theme' : ''}`}>No results found!</p>
       ) : jobsData.map((job: Job) => (
         <JobCard key={job._id} {...job} />
       ))}

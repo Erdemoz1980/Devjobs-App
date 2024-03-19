@@ -221,6 +221,7 @@ border-bottom: 515px solid #6c76df;
 
 .searchbar-wrapper-mobile.dark-theme .location-input input{
   background: var(--clrVeryDarkBlue);
+  color:#fff;
 }
 
 .searchbar-wrapper-mobile .location-input input{
@@ -333,7 +334,6 @@ margin-top: 24px;
   align-items: center;
 }
 
-
 /*Checkmark styling*/
 .fulltime-input  svg{
   position: absolute;
@@ -385,6 +385,10 @@ margin-top: 24px;
   column-gap: 30px;
   row-gap: 40px;
   margin-top: 225px;
+}
+
+.no-results-error.dark-theme{
+  color:var(--clrLightGrey)
 }
 
 /*Load More Button*/
