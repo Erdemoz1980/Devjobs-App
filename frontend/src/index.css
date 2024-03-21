@@ -727,7 +727,6 @@ margin-bottom:8px;
 .search-icon-container svg{
  top:24px;
  left: 12px;
-
 }
 
 .search-icon-container{
@@ -751,6 +750,86 @@ margin-bottom:8px;
 
 .clear-button{
   top:-80px;
+}
+
+/*Job Details Header Mobile*/
+.container-md{
+  max-width: 327px;
+}
+
+.job-details-header{
+  height: 205px;
+  flex-direction: column;
+  gap:0;
+  position: relative;
+  padding: 0;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.job-details-header .info-container{
+  flex-direction: column;
+}
+
+.job-details-header .info-container .logo-container {
+  position: absolute;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+}
+
+.job-details-header .info-container img {
+  object-fit:scale-down;
+}
+
+.job-details-header .info-container .company-name {
+  margin-top: 49px;
+  text-align: center;
+}
+
+.job-details-header .company-website-link{
+  margin-bottom:0;
+}
+
+/*Mobile Job Details Wrapper (Body)*/
+.job-details-wrapper{
+  padding: 40px 24px 40px 24px;
+}
+
+.job-details-body-wrapper{
+  margin-bottom:64px;
+}
+
+.size-h1{
+  font-size: 20px;
+  line-height: initial;
+}
+
+.job-details-body-wrapper .job-details-body-header {
+  flex-direction: column;
+  height: auto;
+}
+
+.apply-now-btn{
+  margin-top: 50px;
+  width: 100%;
+  height: 48px;
+}
+
+.job-requirements-wrapper li, .job-tasks li {
+  grid-template-columns:36px 242px;
+}
+
+.job-details-footer-body  h3, 
+.job-details-footer-body p {
+  display: none;
+
+}
+
+.apply-now-btn-footer {
+  width: 100%;
 }
 
 }

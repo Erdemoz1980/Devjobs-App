@@ -24,7 +24,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, l
             <h4 className='size-h4'>{location}</h4>
           </div>
         </div>
-        <a href={website} target='_blank' rel='noreferrer' className="btn btn-large btn-dark-violet">Apply Now</a>
+        <a href={website} target='_blank' rel='noreferrer' className="btn btn-large btn-dark-violet apply-now-btn">Apply Now</a>
       </header>
 
       <section className="job-desc-wrapper mb-4">
@@ -36,7 +36,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({ postedAt, contract, position, l
         <p className='mb-24'>{requirements.content}</p>
         <ul className='job-requirements-list'>
           {requirements.items.map((item, index) => (
-            <li key={index}><span></span><div>{item}</div></li>
+            <li key={index}><span></span><p>{item}</p></li>
          ))}
         </ul>
       </section>

@@ -14,7 +14,7 @@ const JobDetailsFooter: React.FC<JobDetailsFooterProps> = ({ position, company, 
         <h3 className={`footer-position ${isDarkTheme ? 'dark-theme' : ''}`}>{position}</h3>
         <p className='footer-company'>{company}</p>
       </div>
-      <a href={website} target='_blank' rel='noreferrer' className="btn btn-large btn-dark-violet">Apply Now</a>
+      <a href={website} target='_blank' rel='noreferrer' className="btn btn-large btn-dark-violet apply-now-btn-footer">Apply Now</a>
         </section>
     </footer>
   )
